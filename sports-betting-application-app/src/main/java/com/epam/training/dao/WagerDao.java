@@ -7,7 +7,7 @@ import com.epam.training.model.wager.Wager;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface WaggerDao {
+public interface WagerDao {
 
     void createWagerForPlayer(OutcomeOdd outcomeOdd, Player player, BigDecimal betAmount);
 

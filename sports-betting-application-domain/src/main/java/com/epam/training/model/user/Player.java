@@ -1,5 +1,6 @@
 package com.epam.training.model.user;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 

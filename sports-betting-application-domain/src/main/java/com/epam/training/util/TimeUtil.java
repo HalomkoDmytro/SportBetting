@@ -9,10 +9,6 @@ public final class TimeUtil {
     public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
     public static final String DATE_PATTERN = "yyyy-MM-dd";
 
-    public static Date getCurrentTimeStamp() {
-        return new Date(System.currentTimeMillis());
-    }
-
     public static String getFormattedDate(final Date date) {
         SimpleDateFormat format = new SimpleDateFormat(DATE_PATTERN);
         return format.format(date);

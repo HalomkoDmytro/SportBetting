@@ -13,9 +13,10 @@ import java.util.Scanner;
 public class ConsoleReaderServiceImpl implements ConsoleReaderService {
 
     private Scanner scanner;
-    private Date date;
+    private SystemOutServiceImpl out;
 
-    public ConsoleReaderServiceImpl() {
+    public ConsoleReaderServiceImpl(final SystemOutServiceImpl out) {
+        this.out = out;
     }
 
     @Override
@@ -26,7 +27,7 @@ public class ConsoleReaderServiceImpl implements ConsoleReaderService {
 
     @Override
     public String getLine(final String message) {
-        System.out.println(message);
+        out.consoleWrite(message);
         return getLine();
     }
 
@@ -38,7 +39,7 @@ public class ConsoleReaderServiceImpl implements ConsoleReaderService {
 
     @Override
     public Date readDate(final String message) {
-        System.out.println(message);
+        out.consoleWrite(message);
         return readDate();
     }
 
@@ -59,16 +60,15 @@ public class ConsoleReaderServiceImpl implements ConsoleReaderService {
 
     @Override
     public long readNumber(final String message) {
-        System.out.println(message);
+        out.consoleWrite(message);
         return readNumber();
     }
 
     private Date parseDate(final String line) {
         try {
-            date = TimeUtil.getDateFromString(line);
+            return TimeUtil.getDateFromString(line);
         } catch (ParseException e) {
-           return parseDate(getLine(UiText.BAD_DATE_FORMAT));
+            return parseDate(getLine(UiText.BAD_DATE_FORMAT));
         }
-        return date;
     }
 }

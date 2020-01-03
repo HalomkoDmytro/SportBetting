@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface UserDao {
 
     Optional<Player> byId(long id);
+
+    void addPlayer(Player player);
 }

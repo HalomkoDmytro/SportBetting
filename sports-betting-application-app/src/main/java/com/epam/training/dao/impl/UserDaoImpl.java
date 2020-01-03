@@ -9,31 +9,48 @@ import com.epam.training.util.TimeUtil;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
 
-    private Date date;
+    private final List<Player> players = new ArrayList<>();
+
+    public UserDaoImpl() {
+        init();
+    }
 
     @Override
-    public Optional<Player> byId(long id) {
+    public Optional<Player> byId(final long id) {
+        return players.stream()
+                .filter(player -> player.getId() == id)
+                .findFirst();
+    }
+
+    @Override
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    private void init() {
         final Player player = new Player();
         player.setName("Peter Parker");
         player.setAccountNumber(12345);
         player.setCurrency(Currency.USD);
         player.setBalance(Money.roundBigDecimal(new BigDecimal(20_000)));
         player.setDateOfBirth(parseDate("1990-03-04"));
+        player.setId(1);
 
-        return Optional.of(player);
+        addPlayer(player);
     }
 
     private Date parseDate(final String line) {
         try {
-            date = TimeUtil.getDateFromString(line);
+            return TimeUtil.getDateFromString(line);
         } catch (ParseException e) {
             return parseDate(UiText.BAD_DATE_FORMAT);
         }
-        return date;
     }
 }

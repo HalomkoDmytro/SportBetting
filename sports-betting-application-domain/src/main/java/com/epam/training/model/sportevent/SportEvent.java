@@ -3,6 +3,7 @@ package com.epam.training.model.sportevent;
 
 import com.epam.training.model.bet.Bet;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 public abstract class SportEvent {
 
     protected long id;

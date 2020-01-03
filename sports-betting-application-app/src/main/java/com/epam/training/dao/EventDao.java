@@ -10,4 +10,6 @@ public interface EventDao {
     Optional<SportEvent> byId(long id);
 
     List<SportEvent> getAll();
+
+    void addEvent(SportEvent event);
 }

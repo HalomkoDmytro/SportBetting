@@ -16,22 +16,11 @@ import java.util.Optional;
 
 public class BetDaoImpl implements BetDao {
 
-    private final EventsService eventsService = new EventServiceTestDataImpl();
+    private final EventsService eventsService = new EventServiceTestDataImpl(new EventDaoImpl());
     private final List<Bet> list = new ArrayList<>();
 
-    public BetDaoImpl(){}
-
-    {
-        final Optional<SportEvent> sportEventOptional = eventsService.byId(1);
-        final SportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);
-
-        final Bet betGoals = generateBetGoals(sportEvent);
-        final Bet betScore = generateBetScore(sportEvent);
-        final Bet betWinner = generateBetWinner(sportEvent);
-
-        list.add(betGoals);
-        list.add(betScore);
-        list.add(betWinner);
+    public BetDaoImpl() {
+        setTestDate();
     }
 
     @Override
@@ -39,10 +28,31 @@ public class BetDaoImpl implements BetDao {
         return list;
     }
 
+    @Override
+    public void addBet(Bet bet) {
+        list.add(bet);
+    }
+
+    private void setTestDate() {
+        final Optional<SportEvent> sportEventOptional = eventsService.byId(1);
+        final SportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);
+
+        final Bet betGoals = generateBetGoals(sportEvent);
+        final Bet betScore = generateBetScore(sportEvent);
+        final Bet betWinner = generateBetWinner(sportEvent);
+
+        addBet(betGoals);
+        addBet(betScore);
+        addBet(betWinner);
+    }
+
     private void generateOutcome(Bet bet, float oddVal) {
         final Date startDate = bet.getEvent().getStartDate();
         final Date endDate = bet.getEvent().getEndDate();
-        final OutcomeOdd outcomeOdd = new OutcomeOdd(oddVal, startDate, endDate);
+        final OutcomeOdd outcomeOdd = new OutcomeOdd();
+        outcomeOdd.setOddValue(oddVal);
+        outcomeOdd.setFrom(startDate);
+        outcomeOdd.setTo(endDate);
         final Outcome outcomePlayer = new Outcome();
         outcomePlayer.setOutcome("Arsenal vs Chelsea");
         outcomePlayer.addOutcomeOdd(outcomeOdd);

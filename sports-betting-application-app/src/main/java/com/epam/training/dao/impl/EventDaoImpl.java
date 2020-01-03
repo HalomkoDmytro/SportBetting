@@ -3,43 +3,50 @@ package com.epam.training.dao.impl;
 import com.epam.training.dao.EventDao;
 import com.epam.training.model.sportevent.FootballSportEvent;
 import com.epam.training.model.sportevent.SportEvent;
-import com.epam.training.ui.UiText;
 import com.epam.training.util.TimeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 public class EventDaoImpl implements EventDao {
 
-    public EventDaoImpl(){}
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventDaoImpl.class);
+
+    private final List<SportEvent> sportEvents = new ArrayList<>();
+
+    public EventDaoImpl() {
+        init();
+    }
 
     @Override
     public Optional<SportEvent> byId(final long id) {
-        return Optional.of(new FootballSportEvent("Arsenal vs Chelsea ", parseDate("2016-02-03 "), parseDate("2016-02-05")));
-
+        return sportEvents.stream()
+                .filter(event -> event.getId() == id)
+                .findFirst();
     }
 
     @Override
     public List<SportEvent> getAll() {
-        return listTestData();
-    }
-
-    private List<SportEvent> listTestData() {
-        List<SportEvent> sportEvents = new ArrayList<>();
-
-        sportEvents.add(new FootballSportEvent("Arsenal vs Chelsea ", parseDate("2016-02-03 "), parseDate("2016-02-05")));
-
         return sportEvents;
     }
 
-    private Date parseDate(final String line) {
+    @Override
+    public void addEvent(SportEvent event) {
+        sportEvents.add(event);
+    }
+
+    private void init() {
         try {
-            return TimeUtil.getDateFromString(line);
-        } catch (ParseException e) {
-            return parseDate(UiText.BAD_DATE_FORMAT);
+            FootballSportEvent event = new FootballSportEvent("Arsenal vs Chelsea ", TimeUtil.getDateFromString("2016-02-03 "), TimeUtil.getDateFromString("2016-02-05"));
+            event.setId(1);
+
+            addEvent(event);
+        } catch (ParseException ex) {
+            LOGGER.info("Problem with part date", ex);
         }
     }
 }

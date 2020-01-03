@@ -1,7 +1,9 @@
 package com.epam.training.ui;
 
 
-
+import com.epam.training.dao.impl.BetDaoImpl;
+import com.epam.training.dao.impl.UserDaoImpl;
+import com.epam.training.dao.impl.WagerDaoImpl;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.outcome.OutcomeOdd;
@@ -14,6 +16,7 @@ import com.epam.training.service.UserService;
 import com.epam.training.service.WagerService;
 import com.epam.training.service.impl.BetServiceTestDataImpl;
 import com.epam.training.service.impl.ConsoleReaderServiceImpl;
+import com.epam.training.service.impl.SystemOutServiceImpl;
 import com.epam.training.service.impl.UserServiceTestDataImpl;
 import com.epam.training.service.impl.WagerServiceImpl;
 import com.epam.training.util.TimeUtil;
@@ -28,17 +31,16 @@ import java.util.stream.Collectors;
 
 public class UiController {
 
-    private final ConsoleReaderService in = new ConsoleReaderServiceImpl();
-    private final UserService userService = new UserServiceTestDataImpl();
-    private final BetService betService = new BetServiceTestDataImpl();
-    private final WagerService wagerService = new WagerServiceImpl();
-
+    private final ConsoleReaderService in = new ConsoleReaderServiceImpl(new SystemOutServiceImpl());
+    private final UserService userService = new UserServiceTestDataImpl(new UserDaoImpl());
+    private final BetService betService = new BetServiceTestDataImpl(new BetDaoImpl());
+    private final WagerService wagerService = new WagerServiceImpl(new WagerDaoImpl());
 
     public UiController() {
         init();
     }
 
-    public void init() {
+    private void init() {
 //        Player player = createPlayer();
         final Optional<Player> playerOptional = userService.byId(1);
         final Player player = playerOptional.orElseThrow(NullPointerException::new);
@@ -152,7 +154,7 @@ public class UiController {
         return player;
     }
 
-    public Map<String, OutcomeOdd> showBetOutcomeOptions(List<Bet> bets) {
+    private Map<String, OutcomeOdd> showBetOutcomeOptions(List<Bet> bets) {
         Map<String, OutcomeOdd> map = new HashMap<>();
         int i = 1;
         for (Bet bet : bets) {
