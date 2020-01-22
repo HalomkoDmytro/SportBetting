@@ -6,7 +6,9 @@ import com.epam.training.model.user.Player;
 import com.epam.training.ui.UiText;
 import com.epam.training.util.Money;
 import com.epam.training.util.TimeUtil;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -14,12 +16,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
-    private final List<Player> players = new ArrayList<>();
+    private final List<Player> players;
 
     public UserDaoImpl() {
-        init();
+        players = new ArrayList<>();
     }
 
     @Override
@@ -34,7 +37,8 @@ public class UserDaoImpl implements UserDao {
         players.add(player);
     }
 
-    private void init() {
+    @PostConstruct
+    public void init() {
         final Player player = new Player();
         player.setName("Peter Parker");
         player.setAccountNumber(12345);

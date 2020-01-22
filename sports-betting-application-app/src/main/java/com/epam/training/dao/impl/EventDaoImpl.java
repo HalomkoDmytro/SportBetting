@@ -6,20 +6,23 @@ import com.epam.training.model.sportevent.SportEvent;
 import com.epam.training.util.TimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class EventDaoImpl implements EventDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventDaoImpl.class);
 
-    private final List<SportEvent> sportEvents = new ArrayList<>();
+    private final List<SportEvent> sportEvents;
 
     public EventDaoImpl() {
-        init();
+        sportEvents = new ArrayList<>();
     }
 
     @Override
@@ -39,7 +42,8 @@ public class EventDaoImpl implements EventDao {
         sportEvents.add(event);
     }
 
-    private void init() {
+    @PostConstruct
+    public void init() {
         try {
             FootballSportEvent event = new FootballSportEvent("Arsenal vs Chelsea ", TimeUtil.getDateFromString("2016-02-03 "), TimeUtil.getDateFromString("2016-02-05"));
             event.setId(1);

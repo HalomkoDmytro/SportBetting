@@ -7,20 +7,24 @@ import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.sportevent.SportEvent;
 import com.epam.training.service.EventsService;
-import com.epam.training.service.impl.EventServiceTestDataImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class BetDaoImpl implements BetDao {
 
-    private final EventsService eventsService = new EventServiceTestDataImpl(new EventDaoImpl());
-    private final List<Bet> list = new ArrayList<>();
+    @Autowired
+    private EventsService eventsService;
+    private final List<Bet> list;
 
     public BetDaoImpl() {
-        setTestDate();
+        list = new ArrayList<>();
     }
 
     @Override
@@ -33,7 +37,8 @@ public class BetDaoImpl implements BetDao {
         list.add(bet);
     }
 
-    private void setTestDate() {
+    @PostConstruct
+    public void setTestDate() {
         final Optional<SportEvent> sportEventOptional = eventsService.byId(1);
         final SportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);
 

@@ -1,9 +1,6 @@
 package com.epam.training.ui;
 
 
-import com.epam.training.dao.impl.BetDaoImpl;
-import com.epam.training.dao.impl.UserDaoImpl;
-import com.epam.training.dao.impl.WagerDaoImpl;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.outcome.OutcomeOdd;
@@ -14,13 +11,11 @@ import com.epam.training.service.BetService;
 import com.epam.training.service.ConsoleReaderService;
 import com.epam.training.service.UserService;
 import com.epam.training.service.WagerService;
-import com.epam.training.service.impl.BetServiceTestDataImpl;
-import com.epam.training.service.impl.ConsoleReaderServiceImpl;
-import com.epam.training.service.impl.SystemOutServiceImpl;
-import com.epam.training.service.impl.UserServiceTestDataImpl;
-import com.epam.training.service.impl.WagerServiceImpl;
 import com.epam.training.util.TimeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,17 +24,22 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Component
 public class UiController {
 
-    private final ConsoleReaderService in = new ConsoleReaderServiceImpl(new SystemOutServiceImpl());
-    private final UserService userService = new UserServiceTestDataImpl(new UserDaoImpl());
-    private final BetService betService = new BetServiceTestDataImpl(new BetDaoImpl());
-    private final WagerService wagerService = new WagerServiceImpl(new WagerDaoImpl());
+    @Autowired
+    private ConsoleReaderService in;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private BetService betService;
+    @Autowired
+    private WagerService wagerService;
 
     public UiController() {
-        init();
     }
 
+    @PostConstruct
     private void init() {
 //        Player player = createPlayer();
         final Optional<Player> playerOptional = userService.byId(1);

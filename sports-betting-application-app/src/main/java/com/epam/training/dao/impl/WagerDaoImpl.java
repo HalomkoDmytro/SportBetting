@@ -4,6 +4,7 @@ import com.epam.training.dao.WagerDao;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,11 +13,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Repository
 public class WagerDaoImpl implements WagerDao {
 
-    private final Map<Wager, Player> map = new HashMap<>();
+    private final Map<Wager, Player> map;
 
-    public WagerDaoImpl(){}
+    public WagerDaoImpl() {
+        map = new HashMap<>();
+    }
 
     @Override
     public void createWagerForPlayer(final OutcomeOdd outcomeOdd, final Player player, final BigDecimal betAmount) {

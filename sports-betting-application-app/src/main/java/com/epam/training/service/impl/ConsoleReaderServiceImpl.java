@@ -4,18 +4,22 @@ package com.epam.training.service.impl;
 import com.epam.training.service.ConsoleReaderService;
 import com.epam.training.ui.UiText;
 import com.epam.training.util.TimeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@Service
 public class ConsoleReaderServiceImpl implements ConsoleReaderService {
 
     private Scanner scanner;
     private SystemOutServiceImpl out;
 
-    public ConsoleReaderServiceImpl(final SystemOutServiceImpl out) {
+    @Autowired
+    public ConsoleReaderServiceImpl(SystemOutServiceImpl out) {
         this.out = out;
     }
 
