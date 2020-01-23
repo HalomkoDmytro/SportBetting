@@ -1,6 +1,7 @@
 package com.epam.training.service.impl;
 
 
+import com.epam.training.aspect.constraints.LogExecutionTime;
 import com.epam.training.dao.WagerDao;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Player;
@@ -23,16 +24,19 @@ public class WagerServiceImpl implements WagerService {
     }
 
     @Override
+    @LogExecutionTime
     public void createWagerForPlayer(final OutcomeOdd outcomeOdd, final Player player, final BigDecimal betAmount) {
         wagerDao.createWagerForPlayer(outcomeOdd, player, betAmount);
     }
 
     @Override
+    @LogExecutionTime
     public List<Player> getAllPlayersWithOutcomeOdd(final OutcomeOdd outcomeOdd) {
         return wagerDao.getAllPlayersWithOutcomeOdd(outcomeOdd);
     }
 
     @Override
+    @LogExecutionTime
     public List<Wager> getAllWagerWithOutcomeOdd(final OutcomeOdd outcomeOdd) {
         return wagerDao.getAllWagerWithOutcomeOdd(outcomeOdd);
     }

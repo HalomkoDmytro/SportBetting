@@ -1,6 +1,7 @@
 package com.epam.training.service.impl;
 
 
+import com.epam.training.aspect.constraints.LogExecutionTime;
 import com.epam.training.service.ConsoleReaderService;
 import com.epam.training.ui.UiText;
 import com.epam.training.util.TimeUtil;
@@ -29,6 +30,7 @@ public class ConsoleReaderServiceImpl implements ConsoleReaderService {
         return scanner.nextLine().trim();
     }
 
+    @LogExecutionTime
     @Override
     public String getLine(final String message) {
         out.consoleWrite(message);
