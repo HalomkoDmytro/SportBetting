@@ -1,6 +1,12 @@
 package com.epam.training.model.user;
 
-public class Admin extends Player {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.List;
 
-    private UserGroup userGroup;
+@Entity
+@Table(name = "user")
+public class Admin extends User {
+
+//    private List<UserGroup> userGroup;
 }

@@ -39,7 +39,7 @@ public class UiController {
     public UiController() {
     }
 
-    @PostConstruct
+//    @PostConstruct
     private void init() {
 //        Player player = createPlayer();
         final Optional<Player> playerOptional = userService.byId(1);
