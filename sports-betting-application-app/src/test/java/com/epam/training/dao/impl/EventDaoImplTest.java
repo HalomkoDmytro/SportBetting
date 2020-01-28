@@ -3,7 +3,7 @@ package com.epam.training.dao.impl;
 
 import com.epam.training.dao.EventDao;
 import com.epam.training.model.sportevent.FootballSportEvent;
-import com.epam.training.model.sportevent.SportEvent;
+import com.epam.training.model.sportevent.AbstractSportEvent;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,7 +29,7 @@ public class EventDaoImplTest {
         event.setId(id);
         eventDao.addEvent(event);
 
-        final Optional<SportEvent> actual = eventDao.byId(id);
+        final Optional<AbstractSportEvent> actual = eventDao.byId(id);
         final Optional<FootballSportEvent> expected = Optional.of(event);
         assertEquals(expected, actual);
     }
@@ -43,7 +43,7 @@ public class EventDaoImplTest {
         event.setId(id);
         eventDao.addEvent(event);
 
-        final List<SportEvent> actual = eventDao.getAll();
+        final List<AbstractSportEvent> actual = eventDao.getAll();
 
         assertEquals(currentSize + 1, actual.size());
         assertTrue(actual.contains(event));
@@ -55,7 +55,7 @@ public class EventDaoImplTest {
         final int id = 2;
 
         eventDao.addEvent(event);
-        final List<SportEvent> all = eventDao.getAll();
+        final List<AbstractSportEvent> all = eventDao.getAll();
 
         assertTrue(all.contains(event));
     }

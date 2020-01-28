@@ -1,7 +1,7 @@
-package com.epam.training.service.impl;
+package com.epam.training.service.implTest;
 
 
-import com.epam.training.dao.UserDao;
+import com.epam.training.dao.PlayerDao;
 import com.epam.training.model.user.Player;
 import com.epam.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,16 @@ import java.util.Optional;
 @Service
 public class UserServiceTestDataImpl implements UserService {
 
-    private UserDao userDao;
+    private PlayerDao userDao;
 
     @Autowired
-    public UserServiceTestDataImpl(final  UserDao userDao) {
+    public UserServiceTestDataImpl(final  PlayerDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
-    public Optional<Player> byId(final long id) {
-        return userDao.byId(id);
+    public Optional<Player> byId(final int id) {
+        return userDao.findById(id);
     }
 
 }

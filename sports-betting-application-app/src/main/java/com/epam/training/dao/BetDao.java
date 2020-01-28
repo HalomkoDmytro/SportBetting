@@ -1,12 +1,7 @@
 package com.epam.training.dao;
 
 import com.epam.training.model.bet.Bet;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface BetDao {
-
-    List<Bet> getAll();
-
-    void addBet(Bet bet);
+public interface BetDao extends JpaRepository<Bet, Integer> {
 }

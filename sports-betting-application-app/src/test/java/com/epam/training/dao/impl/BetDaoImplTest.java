@@ -1,7 +1,7 @@
 package com.epam.training.dao.impl;
 
 
-import com.epam.training.dao.BetDao;
+import com.epam.training.dao.BetDaoTestData;
 import com.epam.training.model.bet.Bet;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 
 public class BetDaoImplTest {
 
-    private final BetDao betDao = new BetDaoImpl();
+    private final BetDaoTestData betDao = new BetDaoImpl();
 
     @Test
     public void getAll_returnListOfBet() {

@@ -1,7 +1,7 @@
-package com.epam.training.service.impl;
+package com.epam.training.service.implTest;
 
 
-import com.epam.training.dao.BetDao;
+import com.epam.training.dao.BetDaoTestData;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.service.BetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class BetServiceTestDataImpl implements BetService {
 
-    private BetDao betDao;
+    private BetDaoTestData betDao;
 
     @Autowired
-    public BetServiceTestDataImpl(final BetDao betDao) {
+    public BetServiceTestDataImpl(final BetDaoTestData betDao) {
         this.betDao = betDao;
     }
 

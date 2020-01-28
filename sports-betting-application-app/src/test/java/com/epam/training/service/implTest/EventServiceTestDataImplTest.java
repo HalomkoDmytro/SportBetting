@@ -1,8 +1,8 @@
-package com.epam.training.service.impl;
+package com.epam.training.service.implTest;
 
 import com.epam.training.dao.EventDao;
 import com.epam.training.model.sportevent.FootballSportEvent;
-import com.epam.training.model.sportevent.SportEvent;
+import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.model.sportevent.TennisSportEvent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class EventServiceTestDataImplTest {
     @Test
     public void byId_returnOptionalSportEvent() {
 
-        Optional<SportEvent> optional = of(new TennisSportEvent("test", null, null));
+        Optional<AbstractSportEvent> optional = of(new TennisSportEvent("test", null, null));
 
         when(eventDao.byId(anyLong())).thenReturn(optional);
 
@@ -41,7 +41,7 @@ public class EventServiceTestDataImplTest {
 
     @Test
     public void findAll_returnAllSportEvents() {
-        final List<SportEvent> list = new ArrayList<>();
+        final List<AbstractSportEvent> list = new ArrayList<>();
 
         TennisSportEvent tennis = new TennisSportEvent("test", null, null);
         list.add(tennis);
@@ -50,7 +50,7 @@ public class EventServiceTestDataImplTest {
 
         when(eventDao.getAll()).thenReturn(list);
 
-        List<SportEvent> all = eventService.getAll();
+        List<AbstractSportEvent> all = eventService.getAll();
 
         assertEquals(2, all.size());
         assertTrue(all.contains(tennis));

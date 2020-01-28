@@ -1,4 +1,4 @@
-package com.epam.training.service.impl;
+package com.epam.training.service.implTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

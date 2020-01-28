@@ -2,6 +2,7 @@ package com.epam.training.dao.impl;
 
 import com.epam.training.dao.EventDao;
 import com.epam.training.model.sportevent.FootballSportEvent;
+import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.model.sportevent.SportEvent;
 import com.epam.training.util.TimeUtil;
 import org.slf4j.Logger;
@@ -19,26 +20,26 @@ public class EventDaoImpl implements EventDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventDaoImpl.class);
 
-    private final List<SportEvent> sportEvents;
+    private final List<AbstractSportEvent> sportEvents;
 
     public EventDaoImpl() {
         sportEvents = new ArrayList<>();
     }
 
     @Override
-    public Optional<SportEvent> byId(final long id) {
+    public Optional<AbstractSportEvent> byId(final long id) {
         return sportEvents.stream()
                 .filter(event -> event.getId() == id)
                 .findFirst();
     }
 
     @Override
-    public List<SportEvent> getAll() {
+    public List<AbstractSportEvent> getAll() {
         return sportEvents;
     }
 
     @Override
-    public void addEvent(SportEvent event) {
+    public void addEvent(AbstractSportEvent event) {
         sportEvents.add(event);
     }
 

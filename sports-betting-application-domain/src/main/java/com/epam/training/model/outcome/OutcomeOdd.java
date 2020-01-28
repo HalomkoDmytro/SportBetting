@@ -1,29 +1,55 @@
 package com.epam.training.model.outcome;
 
-import lombok.EqualsAndHashCode;
+import com.epam.training.model.sportevent.Result;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.Objects;
 
-@Getter
-@Setter
-@ToString
 /**
  * The odd of the {@link Outcome}.
  */
+@Entity
+@Table(name = "outcome_odd")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class OutcomeOdd {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     /**
      * Stands for how many times multiplied your money that you bet on a match result if player win
      */
+    @Column(name = "odd_value")
     private float oddValue;
+
+    @Column(name = "from_date")
     private Date from;
+
+    @Column(name = "to_date")
     private Date to;
+
+    @ManyToOne
+    private Outcome outcome;
+
+    @ManyToOne
+    @JoinColumn
+    private Result result;
 
     @Override
     public boolean equals(Object o) {

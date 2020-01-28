@@ -6,6 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,16 +22,24 @@ public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected long id;
+    protected Integer id;
+
+    @Column
     protected String email;
+
+    @Column
     protected String password;
+
+    @Column(name = "is_enabled")
     protected boolean isEnabled;
+
+    @Column
+    @Enumerated(EnumType.STRING)
     protected Role role;
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", email='" + email + '\'' +
                 ", isEnabled=" + isEnabled +
                 '}';

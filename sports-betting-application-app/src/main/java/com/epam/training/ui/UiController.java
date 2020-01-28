@@ -7,6 +7,7 @@ import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.sportevent.Result;
 import com.epam.training.model.user.Currency;
 import com.epam.training.model.user.Player;
+import com.epam.training.model.user.User;
 import com.epam.training.service.BetService;
 import com.epam.training.service.ConsoleReaderService;
 import com.epam.training.service.UserService;
@@ -43,18 +44,18 @@ public class UiController {
     private void init() {
 //        Player player = createPlayer();
         final Optional<Player> playerOptional = userService.byId(1);
-        final Player player = playerOptional.orElseThrow(NullPointerException::new);
+        final Player player = (Player) playerOptional.orElseThrow(NullPointerException::new);
         greeting(player);
         takeBet(player);
         processResult();
     }
 
     private void processResult() {
-        System.out.println(UiText.RESULTS);
-
-        final Result result = new Result();
-        generateRandomResult(result);
-        notifyWinners(result);
+//        System.out.println(UiText.RESULTS);
+//
+//        final Result result = new Result();
+//        generateRandomResult(result);
+//        notifyWinners(result);
     }
 
     private void notifyWinners(Result result) {
@@ -66,18 +67,18 @@ public class UiController {
     }
 
     private void generateRandomResult(Result result) {
-        final List<Bet> bets = betService.getAll();
-
-        final Map<Outcome, List<OutcomeOdd>> map = bets.stream()
-                .flatMap(bet -> bet.getOutcomes().stream())
-                .collect(Collectors.toMap(outcome -> outcome, Outcome::getOutcomeOddList));
-
-        map.forEach((key, value) -> value.forEach(outcomeOdd -> {
-            if (Math.round(Math.random()) == 1) {
-                result.addOutcomeOdd(outcomeOdd);
-                System.out.println(String.format(UiText.WINNER, key.getOutcome(), outcomeOdd));
-            }
-        }));
+//        final List<Bet> bets = betService.getAll();
+//
+//        final Map<Outcome, List<OutcomeOdd>> map = bets.stream()
+//                .flatMap(bet -> bet.getOutcomes().stream())
+//                .collect(Collectors.toMap(outcome -> outcome, Outcome::getOutcomeOddList));
+//
+//        map.forEach((key, value) -> value.forEach(outcomeOdd -> {
+//            if (Math.round(Math.random()) == 1) {
+//                result.addOutcomeOdd(outcomeOdd);
+//                System.out.println(String.format(UiText.WINNER, key.getOutcome(), outcomeOdd));
+//            }
+//        }));
     }
 
     private void takeBet(Player player) {
@@ -156,27 +157,27 @@ public class UiController {
 
     private Map<String, OutcomeOdd> showBetOutcomeOptions(List<Bet> bets) {
         Map<String, OutcomeOdd> map = new HashMap<>();
-        int i = 1;
-        for (Bet bet : bets) {
-            for (Outcome outcome : bet.getOutcomes())
-                for (OutcomeOdd outcomeOdd : outcome.getOutcomeOddList()) {
-                    final StringBuilder sb = new StringBuilder()
-                            .append(i)
-                            .append(": ")
-                            .append(bet.getDescriptor())
-                            .append(", ")
-                            .append(bet.getDescriptor())
-                            .append(", the odd on this ")
-                            .append(outcomeOdd.getOddValue())
-                            .append(", valid from ")
-                            .append(TimeUtil.getFormattedDate(outcomeOdd.getFrom()))
-                            .append(" to ")
-                            .append(TimeUtil.getFormattedDate(outcomeOdd.getTo()));
-                    map.put(String.valueOf(i), outcomeOdd);
-                    System.out.println(sb.toString());
-                    i++;
-                }
-        }
+//        int i = 1;
+//        for (Bet bet : bets) {
+//            for (Outcome outcome : bet.getOutcomes())
+//                for (OutcomeOdd outcomeOdd : outcome.getOutcomeOddList()) {
+//                    final StringBuilder sb = new StringBuilder()
+//                            .append(i)
+//                            .append(": ")
+//                            .append(bet.getDescriptor())
+//                            .append(", ")
+//                            .append(bet.getDescriptor())
+//                            .append(", the odd on this ")
+//                            .append(outcomeOdd.getOddValue())
+//                            .append(", valid from ")
+//                            .append(TimeUtil.getFormattedDate(outcomeOdd.getFrom()))
+//                            .append(" to ")
+//                            .append(TimeUtil.getFormattedDate(outcomeOdd.getTo()));
+//                    map.put(String.valueOf(i), outcomeOdd);
+//                    System.out.println(sb.toString());
+//                    i++;
+//                }
+//        }
         return map;
     }
 }

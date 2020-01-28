@@ -2,7 +2,7 @@ package com.epam.training.model.sportevent;
 
 import java.util.Date;
 
-public class FootballSportEvent extends SportEvent {
+public class FootballSportEvent extends AbstractSportEvent {
 
     {
         event = Event.FOOTBALL;

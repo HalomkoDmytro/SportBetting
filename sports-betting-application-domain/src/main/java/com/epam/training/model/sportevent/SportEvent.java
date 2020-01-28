@@ -1,38 +1,13 @@
 package com.epam.training.model.sportevent;
 
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import com.epam.training.model.bet.Bet;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
-public abstract class SportEvent {
-
-    protected long id;
-    protected String title;
-    protected Date startDate;
-    protected Date endDate;
-    @Setter(AccessLevel.NONE)
-    protected Event event;
-
-    private Result result;
-    private List<Bet> betList = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "SportEvent{" +
-                "title='" + title + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", event=" + event +
-                '}';
-    }
+@Entity
+@Table(name = "sport_event")
+@NoArgsConstructor
+public final class SportEvent extends AbstractSportEvent {
 }

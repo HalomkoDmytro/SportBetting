@@ -1,7 +1,7 @@
-package com.epam.training.service.impl;
+package com.epam.training.service.implTest;
 
 
-import com.epam.training.dao.BetDao;
+import com.epam.training.dao.BetDaoTestData;
 import com.epam.training.model.bet.Bet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class BetServiceTestDataImplTest {
 
     @Mock
-    private BetDao betDao;
+    private BetDaoTestData betDao;
 
     @InjectMocks
     private BetServiceTestDataImpl betService;

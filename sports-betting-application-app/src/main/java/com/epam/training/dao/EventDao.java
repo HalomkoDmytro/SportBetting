@@ -1,5 +1,6 @@
 package com.epam.training.dao;
 
+import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.model.sportevent.SportEvent;
 
 import java.util.List;
@@ -7,9 +8,9 @@ import java.util.Optional;
 
 public interface EventDao {
 
-    Optional<SportEvent> byId(long id);
+    Optional<AbstractSportEvent> byId(long id);
 
-    List<SportEvent> getAll();
+    List<AbstractSportEvent> getAll();
 
-    void addEvent(SportEvent event);
+    void addEvent(AbstractSportEvent event);
 }

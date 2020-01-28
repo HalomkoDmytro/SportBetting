@@ -1,4 +1,4 @@
-package com.epam.training.service.impl;
+package com.epam.training.service.implTest;
 
 import com.epam.training.util.TimeUtil;
 import org.junit.Test;

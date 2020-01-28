@@ -8,5 +8,5 @@ import java.util.Optional;
 @Service
 public interface UserService {
 
-    Optional<Player> byId(long id);
+    Optional<Player> byId(int id);
 }

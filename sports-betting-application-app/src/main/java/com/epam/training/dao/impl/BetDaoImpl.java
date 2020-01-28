@@ -1,12 +1,12 @@
 package com.epam.training.dao.impl;
 
-import com.epam.training.dao.BetDao;
+import com.epam.training.dao.BetDaoTestData;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.bet.BetType;
 import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.outcome.OutcomeOdd;
-import com.epam.training.model.sportevent.SportEvent;
-import com.epam.training.service.EventsService;
+import com.epam.training.model.sportevent.AbstractSportEvent;
+import com.epam.training.service.SportEventsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,10 +17,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class BetDaoImpl implements BetDao {
+public class BetDaoImpl implements BetDaoTestData {
 
     @Autowired
-    private EventsService eventsService;
+    private SportEventsService eventsService;
     private final List<Bet> list;
 
     public BetDaoImpl() {
@@ -39,8 +39,8 @@ public class BetDaoImpl implements BetDao {
 
     @PostConstruct
     public void setTestDate() {
-        final Optional<SportEvent> sportEventOptional = eventsService.byId(1);
-        final SportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);
+        final Optional<AbstractSportEvent> sportEventOptional = eventsService.byId(1);
+        final AbstractSportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);
 
         final Bet betGoals = generateBetGoals(sportEvent);
         final Bet betScore = generateBetScore(sportEvent);
@@ -61,10 +61,11 @@ public class BetDaoImpl implements BetDao {
         final Outcome outcomePlayer = new Outcome();
         outcomePlayer.setOutcome("Arsenal vs Chelsea");
         outcomePlayer.addOutcomeOdd(outcomeOdd);
-        bet.addOutcome(outcomePlayer);
+//        bet.addOutcomes(outcomePlayer);
+        bet.setOutcome(outcomePlayer);
     }
 
-    private Bet generateBetGoals(SportEvent sportEvent) {
+    private Bet generateBetGoals(AbstractSportEvent sportEvent) {
         final Bet bet = new Bet();
         bet.setEvent(sportEvent);
         bet.setDescriptor("the player Oliver Giroud will score 1");
@@ -74,7 +75,7 @@ public class BetDaoImpl implements BetDao {
         return bet;
     }
 
-    private Bet generateBetScore(SportEvent sportEvent) {
+    private Bet generateBetScore(AbstractSportEvent sportEvent) {
         final Bet bet = new Bet();
         bet.setEvent(sportEvent);
         bet.setDescriptor("the number of scored goals will be 3");
@@ -84,7 +85,7 @@ public class BetDaoImpl implements BetDao {
         return bet;
     }
 
-    private Bet generateBetWinner(SportEvent sportEvent) {
+    private Bet generateBetWinner(AbstractSportEvent sportEvent) {
         final Bet bet = new Bet();
         bet.setEvent(sportEvent);
         bet.setDescriptor("the winner will be Arsenal. ");

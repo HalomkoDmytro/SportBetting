@@ -1,8 +1,8 @@
-package com.epam.training.service.impl;
+package com.epam.training.service.implTest;
 
 
 import com.epam.training.aspect.constraints.LogExecutionTime;
-import com.epam.training.dao.WagerDao;
+import com.epam.training.dao.WagerDaoTestData;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
@@ -16,10 +16,10 @@ import java.util.List;
 @Service
 public class WagerServiceImpl implements WagerService {
 
-    private WagerDao wagerDao;
+    private WagerDaoTestData wagerDao;
 
     @Autowired
-    public WagerServiceImpl(final WagerDao wagerDao) {
+    public WagerServiceImpl(final WagerDaoTestData wagerDao) {
         this.wagerDao = wagerDao;
     }
 

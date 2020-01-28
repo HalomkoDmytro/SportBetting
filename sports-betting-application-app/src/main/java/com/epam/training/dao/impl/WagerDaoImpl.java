@@ -1,6 +1,6 @@
 package com.epam.training.dao.impl;
 
-import com.epam.training.dao.WagerDao;
+import com.epam.training.dao.WagerDaoTestData;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
-public class WagerDaoImpl implements WagerDao {
+public class WagerDaoImpl implements WagerDaoTestData {
 
     private final Map<Wager, Player> map;
 
@@ -32,7 +32,7 @@ public class WagerDaoImpl implements WagerDao {
     @Override
     public List<Player> getAllPlayersWithOutcomeOdd(final OutcomeOdd outcomeOdd) {
         return map.entrySet().stream()
-                .filter(pair -> pair.getKey().getOutcomeOdd().equals(outcomeOdd))
+                .filter(pair -> pair.getKey().getOutcomeOdds().equals(outcomeOdd))
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
     }
@@ -40,14 +40,14 @@ public class WagerDaoImpl implements WagerDao {
     @Override
     public List<Wager> getAllWagerWithOutcomeOdd(final OutcomeOdd outcomeOdd) {
         return map.keySet().stream()
-                .filter(key -> key.getOutcomeOdd().equals(outcomeOdd))
+                .filter(key -> key.getOutcomeOdds().equals(outcomeOdd))
                 .collect(Collectors.toList());
     }
 
     private Wager createWager(OutcomeOdd outcomeOdd, Player player, BigDecimal betAmount) {
         final Wager wager = new Wager();
         wager.setAmount(betAmount);
-        wager.setOutcomeOdd(outcomeOdd);
+//        wager.setOutcomeOdds(outcomeOdd);
         wager.setTimestamp(new Date(System.currentTimeMillis()));
         wager.setPlayer(player);
         return wager;

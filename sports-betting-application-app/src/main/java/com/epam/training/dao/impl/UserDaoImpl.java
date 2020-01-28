@@ -1,12 +1,10 @@
 package com.epam.training.dao.impl;
 
-import com.epam.training.dao.UserDao;
 import com.epam.training.model.user.Currency;
 import com.epam.training.model.user.Player;
 import com.epam.training.ui.UiText;
 import com.epam.training.util.Money;
 import com.epam.training.util.TimeUtil;
-import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
@@ -16,8 +14,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public class UserDaoImpl implements UserDao {
+//@Repository
+@Deprecated
+public class UserDaoImpl
+//        implements UserDao
+{
 
     private final List<Player> players;
 
@@ -25,14 +26,14 @@ public class UserDaoImpl implements UserDao {
         players = new ArrayList<>();
     }
 
-    @Override
-    public Optional<Player> byId(final long id) {
+    //    @Override
+    public Optional<Player> playerById(final long id) {
         return players.stream()
                 .filter(player -> player.getId() == id)
                 .findFirst();
     }
 
-    @Override
+    //    @Override
     public void addPlayer(Player player) {
         players.add(player);
     }
