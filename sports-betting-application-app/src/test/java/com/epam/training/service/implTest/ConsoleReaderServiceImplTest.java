@@ -1,5 +1,7 @@
 package com.epam.training.service.implTest;
 
+import com.epam.training.service.impl.ConsoleReaderServiceImpl;
+import com.epam.training.service.impl.SystemOutServiceImpl;
 import com.epam.training.util.TimeUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -4,6 +4,7 @@ import com.epam.training.model.bet.Bet;
 
 import java.util.List;
 
+@Deprecated
 public interface BetDaoTestData {
 
     List<Bet> getAll();

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Deprecated
 public class EventDaoImpl implements EventDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventDaoImpl.class);

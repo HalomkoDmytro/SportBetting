@@ -2,7 +2,8 @@ package com.epam.training.service.impl;
 
 import com.epam.training.dao.AdminDao;
 import com.epam.training.dao.PlayerDao;
-import com.epam.training.exception.UserNotFoundException;
+import com.epam.training.exception.notFound.UserNotFoundException;
+import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Admin;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.usergroup.FootballAdmin;
@@ -101,5 +102,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Player player) {
         playerDao.delete(player);
+    }
+
+    @Override
+    public List<Player> getAllPlayersWithOutcomeOdd(OutcomeOdd outcomeOdd) {
+        throw new UnsupportedOperationException();
     }
 }

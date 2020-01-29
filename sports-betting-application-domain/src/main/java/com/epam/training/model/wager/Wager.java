@@ -22,13 +22,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 public class Wager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Wager.class);
@@ -61,6 +61,10 @@ public class Wager {
     @Column(name = "is_winn")
     private boolean isWinn;
 
+    public Wager() {
+        outcomeOdds = new ArrayList<>();
+    }
+
     @Override
     public String toString() {
         return "Wager{" +
@@ -70,6 +74,10 @@ public class Wager {
                 ", isProcessed=" + isProcessed +
                 ", isWinn=" + isWinn +
                 '}';
+    }
+
+    public void addOutcomeOdd(OutcomeOdd outcomeOdd) {
+        outcomeOdds.add(outcomeOdd);
     }
 
     public void setIsWin(boolean isWin){

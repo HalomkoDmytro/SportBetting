@@ -1,4 +1,4 @@
-package com.epam.training.service.implTest;
+package com.epam.training.service.impl;
 
 
 import com.epam.training.aspect.constraints.LogExecutionTime;

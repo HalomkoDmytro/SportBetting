@@ -4,6 +4,8 @@ package com.epam.training.service.implTest;
 import com.epam.training.dao.WagerDaoTestData;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Player;
+import com.epam.training.service.WagerService;
+import com.epam.training.service.impl.WagerServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

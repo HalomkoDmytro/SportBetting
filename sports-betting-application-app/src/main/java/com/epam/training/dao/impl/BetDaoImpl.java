@@ -42,16 +42,16 @@ public class BetDaoImpl implements BetDaoTestData {
 
 //    @PostConstruct
     public void setTestDate() {
-        final Optional<AbstractSportEvent> sportEventOptional = eventsService.byId(1);
-        final AbstractSportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);
-
-        final Bet betGoals = generateBetGoals(sportEvent);
-        final Bet betScore = generateBetScore(sportEvent);
-        final Bet betWinner = generateBetWinner(sportEvent);
-
-        addBet(betGoals);
-        addBet(betScore);
-        addBet(betWinner);
+//        final Optional<AbstractSportEvent> sportEventOptional = eventsService.byId(1);
+//        final AbstractSportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);
+//
+//        final Bet betGoals = generateBetGoals(sportEvent);
+//        final Bet betScore = generateBetScore(sportEvent);
+//        final Bet betWinner = generateBetWinner(sportEvent);
+//
+//        addBet(betGoals);
+//        addBet(betScore);
+//        addBet(betWinner);
     }
 
     private void generateOutcome(Bet bet, float oddVal) {

@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
+@Deprecated
 public class WagerDaoImpl implements WagerDaoTestData {
 
     private final Map<Wager, Player> map;

@@ -11,9 +11,15 @@ import java.util.List;
 @Service
 public interface WagerService {
 
-    void createWagerForPlayer(OutcomeOdd outcomeOdd, Player player, BigDecimal betAmount);
+    Wager save(Wager wager);
 
-    List<Player> getAllPlayersWithOutcomeOdd(OutcomeOdd outcomeOdd);
+    List<Wager> getAllWithOutcomeOdd(OutcomeOdd outcomeOdd);
 
-    List<Wager> getAllWagerWithOutcomeOdd(OutcomeOdd outcomeOdd);
+    List<Wager> getAll();
+
+    Wager getById(int id);
+
+    Wager update(Wager wager);
+
+    void deleteWager(Wager wager);
 }

@@ -1,7 +1,7 @@
 package com.epam.training.service.impl;
 
 import com.epam.training.dao.SportEventDao;
-import com.epam.training.model.sportevent.AbstractSportEvent;
+import com.epam.training.exception.notFound.SportEventNotFoundException;
 import com.epam.training.model.sportevent.Event;
 import com.epam.training.model.sportevent.FootballSportEvent;
 import com.epam.training.model.sportevent.SportEvent;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SportEventServiceImpl implements SportEventsService {
@@ -24,8 +23,9 @@ public class SportEventServiceImpl implements SportEventsService {
     }
 
     @Override
-    public Optional<AbstractSportEvent> byId(long id) {
-        return Optional.empty();
+    public SportEvent byId(int id) {
+        return sportEventDao.findById(id)
+                .orElseThrow(() -> new SportEventNotFoundException(String.format("Sport Event with id %d not found", id)));
     }
 
     @Override
@@ -34,27 +34,29 @@ public class SportEventServiceImpl implements SportEventsService {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<TennisSportEvent> getAllTennisSportEvents() {
         return (List<TennisSportEvent>)sportEventDao.findByEvent(Event.TENNIS);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<FootballSportEvent> getAllFootballEvents() {
-        return null;
+        return (List<FootballSportEvent>)sportEventDao.findByEvent(Event.FOOTBALL);
     }
 
     @Override
     public SportEvent createSportEvent(SportEvent sportEvent) {
-        return null;
+        return sportEventDao.save(sportEvent);
     }
 
     @Override
     public SportEvent update(SportEvent sportEvent) {
-        return null;
+        return sportEventDao.save(sportEvent);
     }
 
     @Override
     public void delete(SportEvent sportEvent) {
-
+        sportEventDao.delete(sportEvent);
     }
 }
