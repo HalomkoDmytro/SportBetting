@@ -1,6 +1,5 @@
 package com.epam.training.service.implTest;
 
-import com.epam.training.dao.PlayerDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,11 +9,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTestDataImplTest {
 
-    @Mock
-    private PlayerDao userDao;
+//    @Mock
+//    private PlayerDao userDao;
 
-    @InjectMocks
-    private UserServiceTestDataImpl userServiceTestData;
+//    @InjectMocks
+//    private UserServiceTestDataImpl userServiceTestData;
 
     @Test
     public void byId_returnOptionalPlayer() {

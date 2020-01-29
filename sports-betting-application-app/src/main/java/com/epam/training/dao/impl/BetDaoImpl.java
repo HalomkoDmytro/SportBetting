@@ -17,14 +17,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Deprecated
 public class BetDaoImpl implements BetDaoTestData {
 
-    @Autowired
     private SportEventsService eventsService;
     private final List<Bet> list;
 
-    public BetDaoImpl() {
+    @Autowired
+    public BetDaoImpl(SportEventsService sportEventsService) {
         list = new ArrayList<>();
+        eventsService = sportEventsService;
+
     }
 
     @Override
@@ -37,7 +40,7 @@ public class BetDaoImpl implements BetDaoTestData {
         list.add(bet);
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void setTestDate() {
         final Optional<AbstractSportEvent> sportEventOptional = eventsService.byId(1);
         final AbstractSportEvent sportEvent = sportEventOptional.orElseThrow(NullPointerException::new);

@@ -1,7 +1,6 @@
 package com.epam.training.model.sportevent;
 
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

@@ -3,6 +3,7 @@ package com.epam.training.controller;
 import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.model.sportevent.Event;
 import com.epam.training.model.sportevent.SportEvent;
+import com.epam.training.model.sportevent.TennisSportEvent;
 import com.epam.training.service.SportEventsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ public class SportEventController {
 
     @GetMapping("/events/tennis")
     public String getTennisEvents() {
-        final List<? extends AbstractSportEvent> allTennis = sportEventsService.findAllByEventType(Event.TENNIS);
+        final List<TennisSportEvent> allTennis = sportEventsService.getAllTennisSportEvents();
         System.out.println(allTennis);
         return "home";
     }

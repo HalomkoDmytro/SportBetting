@@ -1,13 +1,12 @@
 package com.epam.training.dao.impl;
 
 
-import com.epam.training.dao.PlayerDao;
 import org.junit.Before;
 import org.junit.Test;
 
 public class UserDaoImplTest {
 
-    private PlayerDao userDao;
+//    private PlayerDao userDao;
 
     @Before
     public void init() {

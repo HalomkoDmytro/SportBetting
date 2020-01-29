@@ -3,7 +3,6 @@ package com.epam.training.model.wager;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Currency;
 import com.epam.training.model.user.Player;
-import com.epam.training.model.user.User;
 import com.epam.training.util.Money;
 import lombok.AccessLevel;
 import lombok.Getter;

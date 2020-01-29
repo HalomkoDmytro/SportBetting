@@ -1,10 +1,8 @@
 package com.epam.training.controller;
 
-import com.epam.training.dao.AdminDao;
 import com.epam.training.dao.BetDao;
 import com.epam.training.dao.OutcomeDao;
 import com.epam.training.dao.OutcomeOddDao;
-import com.epam.training.dao.PlayerDao;
 import com.epam.training.dao.ResultDao;
 import com.epam.training.dao.WagerDao;
 import com.epam.training.model.bet.Bet;
@@ -26,12 +24,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/test")
 public class TestController {
-
-    @Autowired
-    private AdminDao adminDao;
-
-    @Autowired
-    private PlayerDao playerDao;
+//
+//    @Autowired
+//    private AdminDao adminDao;
+//
+//    @Autowired
+//    private PlayerDao playerDao;
 
     @Autowired
     private WagerDao wagerDao;
@@ -50,21 +48,21 @@ public class TestController {
 
     @Autowired
     private ResultDao resultDao;
-
-    @GetMapping("/test")
-    public String test() {
-        final List<Admin> all = adminDao.findAll();
-        System.out.println(all);
-        return "home";
-    }
-
-    @GetMapping("/user")
-    public String getUser() {
-
-        final Player user = playerDao.findById(1).orElseThrow(RuntimeException::new);
-        System.out.println(user);
-        return "home";
-    }
+//
+//    @GetMapping("/test")
+//    public String test() {
+//        final List<Admin> all = adminDao.findAll();
+//        System.out.println(all);
+//        return "home";
+//    }
+//
+//    @GetMapping("/user")
+//    public String getUser() {
+//
+//        final Player user = playerDao.findById(1).orElseThrow(RuntimeException::new);
+//        System.out.println(user);
+//        return "home";
+//    }
 
     @GetMapping("/wager")
     public String getWager() {

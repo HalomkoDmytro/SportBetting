@@ -3,7 +3,9 @@ package com.epam.training.service;
 
 import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.model.sportevent.Event;
+import com.epam.training.model.sportevent.FootballSportEvent;
 import com.epam.training.model.sportevent.SportEvent;
+import com.epam.training.model.sportevent.TennisSportEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +16,16 @@ public interface SportEventsService {
 
     Optional<AbstractSportEvent> byId(long id);
 
-    List<? extends AbstractSportEvent> getAll();
+    List<SportEvent> getAll();
 
-    List<? extends AbstractSportEvent> findAllByEventType(Event event);
+    List<TennisSportEvent> getAllTennisSportEvents();
+
+    List<FootballSportEvent> getAllFootballEvents();
+
+    SportEvent createSportEvent(SportEvent sportEvent);
+
+    SportEvent update(SportEvent sportEvent);
+
+    void delete(SportEvent sportEvent);
 
 }
