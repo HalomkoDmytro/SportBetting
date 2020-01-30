@@ -1,9 +1,6 @@
-package com.epam.training.controller;
+package com.epam.training.controller.test;
 
-import com.epam.training.model.sportevent.AbstractSportEvent;
-import com.epam.training.model.sportevent.Event;
 import com.epam.training.model.sportevent.SportEvent;
-import com.epam.training.model.sportevent.TennisSportEvent;
 import com.epam.training.service.SportEventsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,18 +21,11 @@ public class SportEventController {
         this.sportEventsService = sportEventsService;
     }
 
-    @GetMapping("/events")
+    @GetMapping("/history")
     public String getEvents(Model model) {
-        final List<SportEvent> all = (List<SportEvent>) sportEventsService.getAll();
+        final List<SportEvent> all = sportEventsService.getAll();
         System.out.println(all);
-//        model.addAttribute("sportEvents", all);
-        return "home";
-    }
-
-    @GetMapping("/events/tennis")
-    public String getTennisEvents() {
-        final List<TennisSportEvent> allTennis = sportEventsService.getAllTennisSportEvents();
-        System.out.println(allTennis);
-        return "home";
+        model.addAttribute("sportEvents", all);
+        return "events";
     }
 }

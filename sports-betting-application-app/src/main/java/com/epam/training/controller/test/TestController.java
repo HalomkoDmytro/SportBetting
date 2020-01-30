@@ -1,4 +1,4 @@
-package com.epam.training.controller;
+package com.epam.training.controller.test;
 
 import com.epam.training.dao.BetDao;
 import com.epam.training.dao.OutcomeDao;
