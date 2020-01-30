@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SPORT BETTING</title>
+    <link th:href="@{/bootstrap-4.4.1-dist/css/bootstrap.css}" rel="stylesheet">
+</head>
+<body>
+<form action="#" th:action="@{/wager}" th:object="${wagerDto}" method="post">
+    <div>
+        <h2>Event:</h2>
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="event-name">Name:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Event Name" th:value="${wagerDto.eventTitle}" th:field="*{eventTitle}"
+                   aria-label="Username" aria-describedby="event-name" readonly>
+        </div>
+
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="event-start-date">Start date:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Event start date" th:value="${wagerDto.startDate}" th:field="*{startDate}"
+                   aria-label="startDate" aria-describedby="event-start-date" readonly>
+        </div>
+
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="event-end-date">End date:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Event end date" th:value="${wagerDto.endDate}" th:field="*{endDate}"
+                   aria-label="endDate" aria-describedby="event-end-date" readonly>
+        </div>
+
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="event-type">Event:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Type" th:value="${wagerDto.eventType}"  th:field="*{eventType}"
+                   aria-label="eventType" aria-describedby="event-type" readonly>
+        </div>
+
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="event-description">Description:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Event description" th:value="${wagerDto.description}" th:field="*{description}"
+                   aria-label="eventDescription" aria-describedby="event-description" readonly>
+        </div>
+    </div>
+
+    <div>
+        <h2>Bet:</h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Amount</span>
+                <span class="input-group-text" th:text="${wagerDto.currency}"></span>
+            </div>
+            <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
+                   th:field="*{amount}">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="selectOutcomeOption">Options:</label>
+            </div>
+            <select class="custom-select" id="selectOutcomeOption" th:field="*{outcomeOptions}">
+                <option th:each="option : ${wagerDto.outcomeOptions}" th:value="${option}" th:text="${option}"/>
+            </select>
+        </div>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </div>
+</form>
+</body>
+</html>
