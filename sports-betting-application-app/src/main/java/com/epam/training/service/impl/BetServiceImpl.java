@@ -3,6 +3,7 @@ package com.epam.training.service.impl;
 import com.epam.training.dao.BetDao;
 import com.epam.training.exception.notFound.BetNotFoundException;
 import com.epam.training.model.bet.Bet;
+import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.service.BetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,10 @@ public class BetServiceImpl implements BetService {
     @Override
     public void delete(Bet bet) {
         betDao.delete(bet);
+    }
+
+    @Override
+    public List<Bet> betsForSportEvent(AbstractSportEvent sportEvent) {
+        return betDao.findByEventId(sportEvent.getId());
     }
 }

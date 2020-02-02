@@ -88,10 +88,10 @@ public class Wager {
     }
 
     private void notifyPlayer() {
-        final float oddValue = outcomeOdds.get(0).getOddValue();
-        final BigDecimal outcomeMoney = amount.multiply(new BigDecimal(oddValue));
-        BigDecimal newBalance = Money.roundBigDecimal(player.getBalance().add(outcomeMoney));
-        player.setBalance(newBalance);
-        LOGGER.info((String.format("%s new balance is %s", player.getName(), player.getBalance().toString())));
+//        final float oddValue = outcomeOdds.get(0).getOddValue();
+//        final BigDecimal outcomeMoney = amount.multiply(new BigDecimal(oddValue));
+//        BigDecimal newBalance = Money.roundBigDecimal(player.getBalance().add(outcomeMoney));
+//        player.setBalance(newBalance);
+//        LOGGER.info((String.format("%s new balance is %s", player.getName(), player.getBalance().toString())));
     }
 }

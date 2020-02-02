@@ -28,7 +28,7 @@ import javax.persistence.ManyToOne;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bet<T extends AbstractSportEvent> {
+public class Bet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,10 +36,10 @@ public class Bet<T extends AbstractSportEvent> {
 
     @ManyToOne(targetEntity = SportEvent.class)
     @JoinColumn(name="sport_event_id")
-    private T event;
+    private AbstractSportEvent event;
 
     @Column
-    private String descriptor;
+    private String description;
 
     @ManyToOne
     private Outcome outcome;

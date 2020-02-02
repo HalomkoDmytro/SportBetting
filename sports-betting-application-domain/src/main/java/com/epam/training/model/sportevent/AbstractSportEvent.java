@@ -29,7 +29,7 @@ public abstract class AbstractSportEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected long id;
+    protected int id;
 
     @Column
     protected String title;
@@ -46,7 +46,6 @@ public abstract class AbstractSportEvent {
     protected Event event;
 
     @OneToOne()
-    @JoinColumn(name = "result_id", referencedColumnName = "id")
     private Result result;
 
     @OneToMany(mappedBy = "event")

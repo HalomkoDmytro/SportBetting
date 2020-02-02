@@ -41,13 +41,13 @@
                    aria-label="eventType" aria-describedby="event-type" readonly>
         </div>
 
-        <div class="input-group mb-3 border-primary">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="event-description">Description:</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Event description" th:value="${wagerDto.description}" th:field="*{description}"
-                   aria-label="eventDescription" aria-describedby="event-description" readonly>
-        </div>
+<!--        <div class="input-group mb-3 border-primary">-->
+<!--            <div class="input-group-prepend">-->
+<!--                <span class="input-group-text" id="event-description">Description:</span>-->
+<!--            </div>-->
+<!--            <input type="text" class="form-control" placeholder="Event description" th:value="${wagerDto.description}" th:field="*{description}"-->
+<!--                   aria-label="eventDescription" aria-describedby="event-description" readonly>-->
+<!--        </div>-->
     </div>
 
     <div>
@@ -58,17 +58,18 @@
                 <span class="input-group-text" th:text="${wagerDto.currency}"></span>
             </div>
             <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
-                   th:field="*{amount}">
+                   th:field="*{amount}" required>
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="selectOutcomeOption">Options:</label>
             </div>
-            <select class="custom-select" id="selectOutcomeOption" th:field="*{outcomeOptions}">
+            <select class="custom-select" id="selectOutcomeOption" th:field="*{outcomeOptions}" required>
                 <option th:each="option : ${wagerDto.outcomeOptions}" th:value="${option}" th:text="${option}"/>
             </select>
         </div>
+
         <p><input type="submit" class="btn btn-success" value="Submit"/> <input type="reset" class="btn btn-danger" value="Reset"/></p>
     </div>
 </form>

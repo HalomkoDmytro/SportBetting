@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Possible outcome of a bet
@@ -26,14 +25,14 @@ public class Outcome {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
-    private String outcome;
+    @Column(name="outcome")
+    private String value;
 
     @OneToMany(mappedBy = "outcome")
     private List<OutcomeOdd> outcomeOdds;
 
     @OneToMany(mappedBy = "outcome")
-    private Set<Bet> bet;
+    private List<Bet> bet;
 
     public Outcome() {
         this.outcomeOdds = new ArrayList<>();
@@ -46,7 +45,7 @@ public class Outcome {
     @Override
     public String toString() {
         return "Outcome{" +
-                "winner='" + outcome + '\'' +
+                "outcome='" + value + '\'' +
                 ", list=" + outcomeOdds +
                 '}';
     }

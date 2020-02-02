@@ -1,5 +1,6 @@
 package com.epam.training.service;
 
+import com.epam.training.dto.impl.WagerDto;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
@@ -22,4 +23,6 @@ public interface WagerService {
     Wager update(Wager wager);
 
     void deleteWager(Wager wager);
+
+    WagerDto createWagerDto(int eventId);
 }
