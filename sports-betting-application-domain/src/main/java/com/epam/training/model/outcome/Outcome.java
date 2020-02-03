@@ -1,6 +1,7 @@
 package com.epam.training.model.outcome;
 
 import com.epam.training.model.bet.Bet;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +22,22 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 public class Outcome {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name="outcome")
+    @Column(name = "outcome")
     private String value;
 
     @OneToMany(mappedBy = "outcome")
     private List<OutcomeOdd> outcomeOdds;
 
-    @OneToMany(mappedBy = "outcome")
-    private List<Bet> bet;
+    @ManyToOne
+    @JoinColumn(name = "bet_id")
+    private Bet bet;
 
     public Outcome() {
         this.outcomeOdds = new ArrayList<>();

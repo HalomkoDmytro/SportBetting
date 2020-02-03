@@ -2,6 +2,7 @@ package com.epam.training.service.impl;
 
 import com.epam.training.dao.OutcomeDao;
 import com.epam.training.exception.notFound.OutcomeOddNotFoundException;
+import com.epam.training.model.bet.Bet;
 import com.epam.training.model.outcome.Outcome;
 import com.epam.training.service.OutcomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class OutcomeServiceImpl implements OutcomeService {
     @Override
     public void delete(Outcome outcome) {
         outcomeDao.delete(outcome);
+    }
+
+    @Override
+    public List<Outcome> findAllWithBet(Bet bet) {
+        return outcomeDao.findByBet(bet);
     }
 }

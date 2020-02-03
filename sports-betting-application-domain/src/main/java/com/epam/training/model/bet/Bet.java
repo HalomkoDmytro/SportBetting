@@ -4,8 +4,8 @@ import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.model.sportevent.SportEvent;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -17,6 +17,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Bet has possible {@link Outcome},
@@ -27,7 +30,7 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Bet {
 
     @Id
@@ -35,17 +38,21 @@ public class Bet {
     private Integer id;
 
     @ManyToOne(targetEntity = SportEvent.class)
-    @JoinColumn(name="sport_event_id")
+    @JoinColumn(name = "sport_event_id")
     private AbstractSportEvent event;
 
     @Column
     private String description;
 
-    @ManyToOne
-    private Outcome outcome;
+    @OneToMany(mappedBy = "bet")
+    private List<Outcome> outcomes;
 
     @Column(name = "bet_type")
     @Enumerated(EnumType.STRING)
     private BetType type;
+
+    public Bet() {
+        this.outcomes = new ArrayList<>();
+    }
 
 }

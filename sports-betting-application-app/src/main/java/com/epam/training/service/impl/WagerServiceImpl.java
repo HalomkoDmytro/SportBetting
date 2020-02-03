@@ -4,11 +4,14 @@ import com.epam.training.dao.WagerDao;
 import com.epam.training.dto.impl.WagerDto;
 import com.epam.training.exception.notFound.WagerNotFoundException;
 import com.epam.training.model.bet.Bet;
+import com.epam.training.model.bet.BetType;
+import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.sportevent.SportEvent;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
 import com.epam.training.service.BetService;
+import com.epam.training.service.OutcomeService;
 import com.epam.training.service.SportEventsService;
 import com.epam.training.service.UserService;
 import com.epam.training.service.WagerService;
@@ -19,6 +22,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class WagerServiceImpl implements WagerService {
@@ -29,14 +34,16 @@ public class WagerServiceImpl implements WagerService {
     private final SportEventsService sportEventsService;
     private final UserService userService;
     private final BetService betService;
+    private final OutcomeService outcomeService;
 
     @Autowired
     public WagerServiceImpl(WagerDao wagerDao, SportEventsService sportEventsService,
-                            UserService userService, BetService betService) {
+                            UserService userService, BetService betService, OutcomeService outcomeService) {
         this.wagerDao = wagerDao;
         this.sportEventsService = sportEventsService;
         this.userService = userService;
         this.betService = betService;
+        this.outcomeService = outcomeService;
     }
 
     @Override
@@ -84,8 +91,11 @@ public class WagerServiceImpl implements WagerService {
         wagerDto.setEventType(sportEvent.getEvent());
 
         final List<Bet> bets = betService.betsForSportEvent(sportEvent);
-        wagerDto.setOutcomeOptions(outcomeOptions(bets));
+        final Set<BetType> betTypes = bets.stream().map(Bet::getType).collect(Collectors.toSet());
+        wagerDto.setOutcomeOptions(betTypes);
 
+        outcomeService.findAll();
+        final List<Outcome> allWithBet = outcomeService.findAllWithBet(bets.get(0));
         wagerDto.setCurrency(playerById.getCurrency());
         return wagerDto;
     }
