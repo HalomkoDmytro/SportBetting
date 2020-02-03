@@ -33,6 +33,6 @@ public class WagerDto {
 
     private Currency currency;
 
-    private Set<BetType> outcomeOptions;
+    private Set<String> outcomeOptions;
 
 }

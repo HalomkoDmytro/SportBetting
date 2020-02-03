@@ -4,7 +4,6 @@ import com.epam.training.dao.WagerDao;
 import com.epam.training.dto.impl.WagerDto;
 import com.epam.training.exception.notFound.WagerNotFoundException;
 import com.epam.training.model.bet.Bet;
-import com.epam.training.model.bet.BetType;
 import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.sportevent.SportEvent;
@@ -20,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -81,35 +79,28 @@ public class WagerServiceImpl implements WagerService {
     public WagerDto createWagerDto(int eventId) {
         final SportEvent sportEvent = sportEventsService.byId(eventId);
         final Player playerById = userService.findPlayerById(1);
-
-
+        final Bet bet = betService.findById(eventId);
         final WagerDto wagerDto = new WagerDto();
+
+        setStaticWagerData(sportEvent, wagerDto, playerById);
+
+        final Set<String> outcomeValues = getOutcomeValues(bet);
+
+        wagerDto.setOutcomeOptions(outcomeValues);
+
+        return wagerDto;
+    }
+
+    private Set<String> getOutcomeValues(Bet bet) {
+        return bet.getOutcomes().stream().map(Outcome::getValue).collect(Collectors.toSet());
+    }
+
+    private void setStaticWagerData(SportEvent sportEvent, WagerDto wagerDto, Player player) {
         wagerDto.setEventId(sportEvent.getId());
         wagerDto.setEventTitle(sportEvent.getTitle());
         wagerDto.setStartDate(sportEvent.getStartDate().toString());
         wagerDto.setEndDate(sportEvent.getEndDate().toString());
         wagerDto.setEventType(sportEvent.getEvent());
-
-        final List<Bet> bets = betService.betsForSportEvent(sportEvent);
-        final Set<BetType> betTypes = bets.stream().map(Bet::getType).collect(Collectors.toSet());
-        wagerDto.setOutcomeOptions(betTypes);
-
-        outcomeService.findAll();
-        final List<Outcome> allWithBet = outcomeService.findAllWithBet(bets.get(0));
-        wagerDto.setCurrency(playerById.getCurrency());
-        return wagerDto;
-    }
-
-    private List<String> outcomeOptions(List<Bet> betList) {
-        List<String> list = new ArrayList<>();
-        StringBuilder sb;
-        for (Bet bet : betList) {
-            sb = new StringBuilder();
-            sb.append(bet.getType().toString())
-                    .append(":")
-                    .append(bet.getDescription());
-            list.add(sb.toString());
-        }
-        return list;
+        wagerDto.setCurrency(player.getCurrency());
     }
 }
