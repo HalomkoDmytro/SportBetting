@@ -16,17 +16,15 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="event-name">Name:</span>
             </div>
-            <input type="text" class="form-control" placeholder="Event Name" th:value="${wagerDto.eventTitle}"
-                   th:field="*{eventTitle}"
-                   aria-label="Username" aria-describedby="event-name" readonly>
+            <input type="text" class="form-control" placeholder="Event Name" th:value="${sportEvent.title}"
+                   aria-label="Event title" aria-describedby="event-name" readonly>
         </div>
 
         <div class="input-group mb-3 border-primary">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="event-start-date">Start date:</span>
             </div>
-            <input type="text" class="form-control" placeholder="Event start date" th:value="${wagerDto.startDate}"
-                   th:field="*{startDate}"
+            <input type="text" class="form-control" placeholder="Event start date" th:value="${sportEvent.startDate}"
                    aria-label="startDate" aria-describedby="event-start-date" readonly>
         </div>
 
@@ -34,8 +32,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="event-end-date">End date:</span>
             </div>
-            <input type="text" class="form-control" placeholder="Event end date" th:value="${wagerDto.endDate}"
-                   th:field="*{endDate}"
+            <input type="text" class="form-control" placeholder="Event end date" th:value="${sportEvent.endDate}"
                    aria-label="endDate" aria-describedby="event-end-date" readonly>
         </div>
 
@@ -43,8 +40,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="event-type">Event:</span>
             </div>
-            <input type="text" class="form-control" placeholder="Type" th:value="${wagerDto.eventType}"
-                   th:field="*{eventType}"
+            <input type="text" class="form-control" placeholder="Type" th:value="${sportEvent.event}"
                    aria-label="eventType" aria-describedby="event-type" readonly>
         </div>
     </div>
@@ -53,10 +49,11 @@
         <h2>Bet type</h2>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <label class="input-group-text" for="betType">Options:</label>
+                <label class="input-group-text" for="selectedOption">Options:</label>
             </div>
-            <select class="custom-select" id="betType" th:field="*{outcomeOptions}">
-                <option th:each="option : *{bets}" th:value="${option}" th:text="${option}"/>
+            <select class="custom-select" id="selectedOption" onchange="sportBetting.onBetTypeChange($(this))">
+                <option selected="selected"></option>
+                <option th:each="option : *{bets}" th:text="${option.type}"></option>
             </select>
         </div>
     </div>
