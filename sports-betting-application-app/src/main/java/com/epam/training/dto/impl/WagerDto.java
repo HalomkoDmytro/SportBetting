@@ -16,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
+@Deprecated
 public class WagerDto {
 
     private int eventId;

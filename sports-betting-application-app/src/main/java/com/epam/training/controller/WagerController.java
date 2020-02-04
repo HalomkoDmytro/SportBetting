@@ -1,6 +1,7 @@
 package com.epam.training.controller;
 
 import com.epam.training.dto.impl.WagerDto;
+import com.epam.training.dto.impl.WagerNewDto;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.sportevent.SportEvent;
 import com.epam.training.model.user.Player;
@@ -47,6 +48,12 @@ public class WagerController {
         model.addAttribute("bets", bets);
         model.addAttribute("player", player);
         return "wagerNew";
+    }
+
+    @PostMapping("/wagerNew")
+    public String createWager(@ModelAttribute WagerNewDto wagerNewDto) {
+        System.out.println(wagerNewDto);
+        return "home";
     }
 
     @GetMapping("/wager/{id}")

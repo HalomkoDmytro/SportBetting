@@ -5,6 +5,7 @@ import com.epam.training.model.user.Currency;
 import com.epam.training.model.user.Player;
 import com.epam.training.util.Money;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Wager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Wager.class);
@@ -37,9 +40,9 @@ public class Wager {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "outcome_odd_id")
-    private List<OutcomeOdd> outcomeOdds;
+    private OutcomeOdd outcomeOdd;
 
     @OneToOne
     private Player player;
@@ -61,10 +64,6 @@ public class Wager {
     @Column(name = "is_winn")
     private boolean isWinn;
 
-    public Wager() {
-        outcomeOdds = new ArrayList<>();
-    }
-
     @Override
     public String toString() {
         return "Wager{" +
@@ -74,10 +73,6 @@ public class Wager {
                 ", isProcessed=" + isProcessed +
                 ", isWinn=" + isWinn +
                 '}';
-    }
-
-    public void addOutcomeOdd(OutcomeOdd outcomeOdd) {
-        outcomeOdds.add(outcomeOdd);
     }
 
     public void setIsWin(boolean isWin){
