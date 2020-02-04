@@ -53,7 +53,7 @@
             </div>
             <select class="custom-select" id="selectedOption" onchange="sportBetting.onBetTypeChange($(this))">
                 <option selected="selected"></option>
-                <option th:each="option : *{bets}" th:text="${option.type}"></option>
+                <option th:each="option : *{bets}" th:text="${option.type}" th:attr="data-idoption=${option.id}"></option>
             </select>
         </div>
     </div>

@@ -1,6 +1,7 @@
 package com.epam.training.model.outcome;
 
 import com.epam.training.model.bet.Bet;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +38,7 @@ public class Outcome {
 
     @ManyToOne
     @JoinColumn(name = "bet_id")
+    @JsonBackReference
     private Bet bet;
 
     public Outcome() {
