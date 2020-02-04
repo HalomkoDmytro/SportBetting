@@ -50,4 +50,9 @@ public class OutcomeServiceImpl implements OutcomeService {
     public List<Outcome> findAllWithBet(Bet bet) {
         return outcomeDao.findByBet(bet);
     }
+
+    @Override
+    public List<Outcome> findAllWithBetId(Integer betId) {
+        return outcomeDao.findByBetId(betId);
+    }
 }

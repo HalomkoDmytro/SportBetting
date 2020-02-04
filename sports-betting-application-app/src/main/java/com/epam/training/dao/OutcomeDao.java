@@ -9,4 +9,6 @@ import java.util.List;
 public interface OutcomeDao extends JpaRepository<Outcome, Integer> {
 
     List<Outcome> findByBet(Bet bet);
+
+    List<Outcome> findByBetId(Integer id);
 }

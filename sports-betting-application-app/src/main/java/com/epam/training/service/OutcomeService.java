@@ -18,4 +18,6 @@ public interface OutcomeService {
     void delete(Outcome outcome);
 
     List<Outcome> findAllWithBet(Bet bet);
+
+    List<Outcome> findAllWithBetId(Integer betId);
 }
