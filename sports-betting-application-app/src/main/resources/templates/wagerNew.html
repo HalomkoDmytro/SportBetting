@@ -44,7 +44,9 @@
                    aria-label="eventType" aria-describedby="event-type" readonly>
         </div>
     </div>
+
     <hr>
+
     <div>
         <h2>Bet type</h2>
         <div class="input-group mb-3">
@@ -57,7 +59,28 @@
             </select>
         </div>
     </div>
+
     <hr>
+
+    <div id="outcomeOptionBlock" style="visibility: hidden">
+        <h2>Bet on outcome:</h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Amount</span>
+                <span class="input-group-text" th:text="${player.currency}"></span>
+            </div>
+            <input type="number" class="form-control" th:attr="placeholder='Max to bet: ' + ${player.balance}"
+                    required>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="selectOutcomeOption">Outcome:</label>
+            </div>
+            <select class="custom-select" id="selectOutcomeOption" required>
+            </select>
+        </div>
+    </div>
 </div>
 </body>
 </html>
