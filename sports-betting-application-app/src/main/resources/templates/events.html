@@ -30,7 +30,7 @@
                 <td colspan="4">No events available</td>
             </tr>
             <tr th:each="event : ${sportEvents}" onclick="sportBetting.goToHrefOnClickRow($(this));">
-                <td th:attr="data-href='/wager/' + ${event.id}"></td>
+                <td th:attr="data-href='/wagerNew/' + ${event.id}"></td>
                 <td><span th:text="${eventStat.count}"></span></td>
                 <td><span th:text="${event.title}"></span></td>
                 <td><span th:text="${event.event}"></span></td>

@@ -18,4 +18,6 @@ public interface BetService {
     void delete(Bet bet);
 
     List<Bet> betsForSportEvent(AbstractSportEvent sportEvent);
+
+    List<Bet> betsForSportEventById(Integer idSportEvent);
 }

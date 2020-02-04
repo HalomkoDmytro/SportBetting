@@ -1,6 +1,5 @@
 package com.epam.training.dto.impl;
 
-import com.epam.training.model.bet.BetType;
 import com.epam.training.model.sportevent.Event;
 import com.epam.training.model.user.Currency;
 import lombok.AllArgsConstructor;

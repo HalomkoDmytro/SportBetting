@@ -48,6 +48,11 @@ public class BetServiceImpl implements BetService {
 
     @Override
     public List<Bet> betsForSportEvent(AbstractSportEvent sportEvent) {
-        return betDao.findByEventId(sportEvent.getId());
+        return betsForSportEventById(sportEvent.getId());
+    }
+
+    @Override
+    public List<Bet> betsForSportEventById(Integer idSportEvent) {
+        return betDao.findByEventId(idSportEvent);
     }
 }
