@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SPORT BETTING</title>
+    <link th:href="@{/bootstrap-4.4.1-dist/css/bootstrap.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <h2>Player:</h2>
+    <div class="input-group mb-3 border-primary">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="acNumber">Account number:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Account number" th:value="${player.getId()}"
+               aria-label="title" aria-describedby="acNumber" readonly>
+    </div>
+
+    <div class="input-group mb-3 border-primary">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="name">Name:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Name" th:value="${player.getName()}"
+               aria-label="title" aria-describedby="name" readonly>
+    </div>
+
+    <div class="input-group mb-3 border-primary">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="email">Email:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="email" th:value="${player.getEmail()}"
+               aria-label="title" aria-describedby="email" readonly>
+    </div>
+
+    <div class="input-group mb-3 border-primary">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="dateBirth">Date of birth:</span>
+        </div>
+        <input type="text" class="form-control" placeholder="dateBirth" th:value="${player.getDateOfBirth()}"
+               aria-label="title" aria-describedby="dateBirth" readonly>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Money</span>
+            <span class="input-group-text" th:text="${player.currency}"></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Name" th:value="${player.getBalance()}"
+               aria-label="title" aria-describedby="name" readonly>
+    </div>
+
+</div>
+
+</body>
+</html>
