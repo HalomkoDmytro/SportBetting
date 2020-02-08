@@ -1,9 +1,12 @@
 package com.epam.training.model.outcome;
 
 import com.epam.training.model.bet.Bet;
+import com.epam.training.model.sportevent.Result;
+import com.epam.training.model.sportevent.SportEvent;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -14,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +28,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 public class Outcome {
 
     @Id
@@ -34,26 +39,22 @@ public class Outcome {
     private String value;
 
     @OneToMany(mappedBy = "outcome")
+    @JsonBackReference
     private List<OutcomeOdd> outcomeOdds;
+
+    @OneToOne()
+    @JoinColumn(name = "result_id")
+    private Result result;
 
     @ManyToOne
     @JoinColumn(name = "bet_id")
     @JsonBackReference
     private Bet bet;
 
-    public Outcome() {
-        this.outcomeOdds = new ArrayList<>();
-    }
-
-    public void addOutcomeOdd(final OutcomeOdd outcomeOdd) {
-        outcomeOdds.add(outcomeOdd);
-    }
-
     @Override
     public String toString() {
         return "Outcome{" +
                 "outcome='" + value + '\'' +
-                ", list=" + outcomeOdds +
                 '}';
     }
 }

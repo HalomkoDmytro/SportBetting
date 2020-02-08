@@ -3,7 +3,6 @@ package com.epam.training.model.wager;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Currency;
 import com.epam.training.model.user.Player;
-import com.epam.training.util.Money;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,12 +19,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -45,6 +41,7 @@ public class Wager {
     private OutcomeOdd outcomeOdd;
 
     @OneToOne
+    @JoinColumn(name = "user_id")
     private Player player;
 
     @Column
@@ -75,9 +72,9 @@ public class Wager {
                 '}';
     }
 
-    public void setIsWin(boolean isWin){
+    public void setIsWin(boolean isWin) {
         this.isWinn = isWin;
-        if(isWin) {
+        if (isWin) {
             notifyPlayer();
         }
     }

@@ -15,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,9 +42,6 @@ public abstract class AbstractSportEvent {
     @Column(name = "event")
     @Enumerated(EnumType.STRING)
     protected Event event;
-
-    @OneToOne()
-    private Result result;
 
     @OneToMany(mappedBy = "event")
     private List<Bet> betList = new ArrayList<>();

@@ -44,4 +44,10 @@ public class OutcomeOddServiceImpl implements OutcomeOddService {
     public void delete(OutcomeOdd outcomeOdd) {
         outcomeOddDao.delete(outcomeOdd);
     }
+
+    @Override
+    public OutcomeOdd findWithOutcome(int id) {
+        return outcomeOddDao.findById(id)
+                .orElseThrow(() -> new OutcomeOddNotFoundException(String.format("OutcomeOdd with Outcome by Outcome id: %d not found", id)));
+    }
 }

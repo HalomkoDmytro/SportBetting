@@ -16,7 +16,6 @@ var sportBetting = {
             type: "GET",
             contentType: "application/json",
             dataType: "json",
-            // data: JSON.stringify(),
             cache: false,
             timeout: 600000,
             success: function (json) {
@@ -36,10 +35,12 @@ var sportBetting = {
         if (json.length !== 0) {
             outcomeOptionBlock.css('visibility', 'visible');
             $.each(json, function (i, value) {
-                outcomeOptionBox.append($('<option></option>').attr('value', value.value).text(value.value));
+                outcomeOptionBox.append($('<option></option>')
+                    .attr('value', value.id)
+                    .text(value.value));
             })
         } else {
             outcomeOptionBlock.css('visibility', 'hidden');
         }
     }
-}
+};

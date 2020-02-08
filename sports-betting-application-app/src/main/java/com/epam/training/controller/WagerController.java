@@ -52,10 +52,11 @@ public class WagerController {
 
     @PostMapping("/wagerNew")
     public String createWager(@ModelAttribute WagerNewDto wagerNewDto) {
-        System.out.println(wagerNewDto);
+        wagerService.createWager(wagerNewDto);
         return "home";
     }
 
+    @Deprecated
     @GetMapping("/wager/{id}")
     public String getWagerById(@PathVariable int id, Model model) {
         final WagerDto wagerDto = wagerService.createWagerDto(id);
@@ -63,6 +64,7 @@ public class WagerController {
         return "wager";
     }
 
+    @Deprecated
     @PostMapping("/wager")
     public String addWager(@ModelAttribute WagerDto wagerDto) {
         System.out.println(wagerDto);

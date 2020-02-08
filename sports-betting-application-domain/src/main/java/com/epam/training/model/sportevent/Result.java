@@ -1,10 +1,9 @@
 package com.epam.training.model.sportevent;
 
-import com.epam.training.model.outcome.OutcomeOdd;
+import com.epam.training.model.outcome.Outcome;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +24,7 @@ public class Result {
     private Integer id;
 
     @OneToMany(mappedBy = "result")
-    private List<OutcomeOdd> outcomesWinner;
+    private List<Outcome> outcomesWinner;
 
     @OneToOne()
     @JoinColumn(name = "sport_even_id")
@@ -35,7 +34,7 @@ public class Result {
         this.outcomesWinner = new ArrayList<>();
     }
 
-    public void addOutcomeOdd(final OutcomeOdd outcomeOdd) {
-        outcomesWinner.add(outcomeOdd);
+    public void addOutcome(final Outcome outcome) {
+        outcomesWinner.add(outcome);
     }
 }

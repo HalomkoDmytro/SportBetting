@@ -24,7 +24,6 @@ import java.util.Objects;
 @Table(name = "outcome_odd")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class OutcomeOdd {
 
@@ -46,10 +45,6 @@ public class OutcomeOdd {
 
     @ManyToOne
     private Outcome outcome;
-
-    @ManyToOne
-    @JoinColumn
-    private Result result;
 
     @Override
     public boolean equals(Object o) {

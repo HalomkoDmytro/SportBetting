@@ -1,4 +1,11 @@
-DROP TABLE IF EXISTS `wager`, `outcome_odd`, `outcome`, `bet`, `result`, `sport_event`, `user`;
+
+DROP TABLE IF EXISTS `wager`;
+DROP TABLE IF EXISTS `outcome_odd`;
+DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `outcome`;
+DROP TABLE IF EXISTS `bet`;
+DROP TABLE IF EXISTS `result`;
+DROP TABLE IF EXISTS `sport_event`;
 
 CREATE TABLE `sport_event` (
 	id INTEGER NOT NULL AUTO_INCREMENT ,
@@ -28,6 +35,7 @@ CREATE TABLE `bet` (
 CREATE TABLE `outcome` (
 	id INTEGER NOT NULL AUTO_INCREMENT,
 	outcome VARCHAR(256),
+	outcome_odd_id INTEGER,
 	result_id INTEGER,
 	bet_id INTEGER,
 	PRIMARY KEY(id),
@@ -70,6 +78,6 @@ CREATE TABLE `wager` (
 	is_processed BOOL,
 	is_winn BOOL,
 	PRIMARY KEY(id),
-	CONSTRAINT fk_outcome_odd FOREIGN KEY(outcome_odd_id) REFERENCES `outcome_odd`(id),
+	CONSTRAINT fk_outcome_odd_2 FOREIGN KEY(outcome_odd_id) REFERENCES `outcome_odd`(id),
     CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES `user`(id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
