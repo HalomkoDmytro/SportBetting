@@ -1,6 +1,5 @@
 package com.epam.training.controller;
 
-import com.epam.training.dto.impl.WagerDto;
 import com.epam.training.dto.impl.WagerNewDto;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.sportevent.SportEvent;
@@ -53,21 +52,6 @@ public class WagerController {
     @PostMapping("/wagerNew")
     public String createWager(@ModelAttribute WagerNewDto wagerNewDto) {
         wagerService.createWager(wagerNewDto);
-        return "home";
-    }
-
-    @Deprecated
-    @GetMapping("/wager/{id}")
-    public String getWagerById(@PathVariable int id, Model model) {
-        final WagerDto wagerDto = wagerService.createWagerDto(id);
-        model.addAttribute("wagerDto", wagerDto);
-        return "wager";
-    }
-
-    @Deprecated
-    @PostMapping("/wager")
-    public String addWager(@ModelAttribute WagerDto wagerDto) {
-        System.out.println(wagerDto);
         return "home";
     }
 }

@@ -1,7 +1,6 @@
 package com.epam.training.service.impl;
 
 import com.epam.training.dao.WagerDao;
-import com.epam.training.dto.impl.WagerDto;
 import com.epam.training.dto.impl.WagerNewDto;
 import com.epam.training.exception.notFound.WagerNotFoundException;
 import com.epam.training.model.bet.Bet;
@@ -81,22 +80,6 @@ public class WagerServiceImpl implements WagerService {
         wagerDao.delete(wager);
     }
 
-    @Override
-    public WagerDto createWagerDto(int eventId) {
-        final SportEvent sportEvent = sportEventsService.byId(eventId);
-        final Player playerById = userService.findPlayerById(1);
-        final Bet bet = betService.findById(eventId);
-        final WagerDto wagerDto = new WagerDto();
-
-        setStaticWagerData(sportEvent, wagerDto, playerById);
-
-        final Set<String> outcomeValues = getOutcomeValues(bet);
-
-        wagerDto.setOutcomeOptions(outcomeValues);
-
-        return wagerDto;
-    }
-
     private Set<String> getOutcomeValues(Bet bet) {
         return bet.getOutcomes().stream().map(Outcome::getValue).collect(Collectors.toSet());
     }
@@ -120,12 +103,8 @@ public class WagerServiceImpl implements WagerService {
         wager.setTimestamp(new Date());
     }
 
-    private void setStaticWagerData(SportEvent sportEvent, WagerDto wagerDto, Player player) {
-        wagerDto.setEventId(sportEvent.getId());
-        wagerDto.setEventTitle(sportEvent.getTitle());
-        wagerDto.setStartDate(sportEvent.getStartDate().toString());
-        wagerDto.setEndDate(sportEvent.getEndDate().toString());
-        wagerDto.setEventType(sportEvent.getEvent());
-        wagerDto.setCurrency(player.getCurrency());
+    @Override
+    public List<Wager> findByPlayerId(int playerId) {
+        return wagerDao.findByPlayerId(playerId);
     }
 }
