@@ -2,11 +2,11 @@ package com.epam.training.service.impl;
 
 import com.epam.training.dao.WagerDao;
 import com.epam.training.dto.impl.WagerNewDto;
+import com.epam.training.exception.NotEnoughMoneyException;
 import com.epam.training.exception.notFound.WagerNotFoundException;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.outcome.OutcomeOdd;
-import com.epam.training.model.sportevent.SportEvent;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
 import com.epam.training.service.BetService;
@@ -95,12 +95,25 @@ public class WagerServiceImpl implements WagerService {
         final Player playerById = userService.findPlayerById(wagerNewDto.getIdPlayer());
         final OutcomeOdd outcomeOdd = outcomeOddService.findWithOutcome(wagerNewDto.getIdOutcome());
 
-        wager.setAmount(new BigDecimal(wagerNewDto.getBetSize()));
+        final float betSize = wagerNewDto.getBetSize();
+        wager.setAmount(new BigDecimal(betSize));
         wager.setCurrency(playerById.getCurrency());
         wager.setPlayer(playerById);
         wager.setOutcomeOdd(outcomeOdd);
         wager.setProcessed(false);
         wager.setTimestamp(new Date());
+    }
+
+    private void reducePlayerBalance(Player player, float betSize) {
+        final BigDecimal bet = new BigDecimal(betSize);
+        final BigDecimal playerBalance = player.getBalance();
+        if (playerBalance.compareTo(bet) >= 0) {
+            final BigDecimal newPlayerBalance = playerBalance.subtract(bet);
+            player.setBalance(newPlayerBalance);
+        } else {
+            throw new NotEnoughMoneyException(String.format("Not enough money to make bet on payerId: %d, curBalance: %s, betSize: %f",
+                    player.getId(), playerBalance.toString(), betSize));
+        }
     }
 
     @Override
