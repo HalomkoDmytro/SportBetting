@@ -74,7 +74,7 @@
                     <span class="input-group-text" th:text="${player.currency}"></span>
                 </div>
                 <input type="number" class="form-control" th:attr="placeholder='Max to bet: ' + ${player.balance}"
-                      name="betSize" required>
+                       name="betSize" required>
             </div>
 
             <div class="input-group mb-3">
@@ -86,7 +86,8 @@
             </div>
 
             <p><input type="submit" class="btn btn-success" value="Submit"/>
-                <input type="reset" class="btn btn-danger" value="Cancel"/></p>
+                <input type="reset" onclick="sportBetting.goHome();" id="resetButton" class="btn btn-danger"
+                       value="Cancel"/></p>
 
             <input type="hidden" th:value="${player.id}" name="idPlayer"/>
         </div>

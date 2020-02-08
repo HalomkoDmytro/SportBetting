@@ -3,6 +3,10 @@ var sportBetting = {
         window.document.location = thisObj.children('td:first').data("href");
     },
 
+    goHome: function() {
+        window.document.location = '/sportEvent/history';
+    },
+
     onBetTypeChange: function (thisObj) {
         let selectedOption = $('#selectedOption').children("option:selected");
         // let text = selectedOption.val();
