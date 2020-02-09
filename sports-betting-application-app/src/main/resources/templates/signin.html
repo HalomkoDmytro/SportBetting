@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>SPORT BETTING</title>
+    <base href="/">
     <link th:href="@{/bootstrap-4.4.1-dist/css/bootstrap.css}" rel="stylesheet">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <div class="d-flex justify-content-center m-5">
     <div class="card border-primary mb-3" style="max-width: 18rem;">
         <div class="card-header text-white bg-primary"><h3>Login</h3></div>
         <div class="card-body text-grey">
-            <form>
-                <input type="email" class="form-control" id="email" placeholder="Email">
+            <form th:action="@{/sign-in-handler}" method="post">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email">
                 <br>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                 <br>
+                <div th:if="${param.error}">
+                    Invalid username or password.
+                </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
