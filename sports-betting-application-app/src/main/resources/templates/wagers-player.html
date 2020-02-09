@@ -24,15 +24,21 @@
                 <th scope="col">Multiple on vin</th>
                 <th scope="col">Bet amount</th>
                 <th scope="col">Is Processed</th>
-
             </tr>
             </thead>
             <tbody>
             <tr th:if="${wagers.empty}">
-                <td colspan="4">No events available</td>
+                <td colspan="4">No bets available</td>
             </tr>
             <tr th:each="wager : ${wagers}">
-                <td>&nbsp;&nbsp;</td>
+                <td>
+                    <form action="#" th:action="@{/user/deleteWager}" method="post">
+                        <button th:type="submit"
+                                class="btn btn-danger">delete
+                        </button>
+                        <input type="hidden" th:value="${wager.getId()}" name="wagerId"/>
+                    </form>
+                </td>
                 <td><span
                         th:text="${wager.getOutcomeOdd().getOutcome().getBet().getEvent().getTitle()} + ' start date: s' + ${wager.getOutcomeOdd().getOutcome().getBet().getEvent().getStartDate()}"></span>
                 </td>

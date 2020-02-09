@@ -8,4 +8,5 @@ import java.util.List;
 public interface WagerDao extends JpaRepository<Wager, Integer> {
 
     List<Wager> findByPlayerId(int playerId);
+
 }

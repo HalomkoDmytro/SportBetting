@@ -7,7 +7,9 @@ import com.epam.training.service.WagerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,5 +39,11 @@ public class PlayerController {
         final List<Wager> wagers = wagerService.findByPlayerId(1);
         model.addAttribute("wagers", wagers);
         return "wagers-player";
+    }
+
+    @PostMapping("/deleteWager")
+    public String deleteWager(@RequestParam(name = "wagerId") int wagerId, Model model) {
+        wagerService.checkDateAndDeleteWager(wagerId);
+        return "redirect:/user/wagers";
     }
 }

@@ -22,6 +22,8 @@ public interface WagerService {
 
     void deleteWager(Wager wager);
 
+    void checkDateAndDeleteWager(int id);
+
     Wager createWager(WagerNewDto wagerNewDto);
 
     List<Wager> findByPlayerId(int playerId);

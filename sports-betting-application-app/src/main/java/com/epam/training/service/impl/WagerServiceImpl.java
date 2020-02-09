@@ -2,6 +2,7 @@ package com.epam.training.service.impl;
 
 import com.epam.training.dao.WagerDao;
 import com.epam.training.dto.impl.WagerNewDto;
+import com.epam.training.exception.ExpiredTimeForActionException;
 import com.epam.training.exception.NotEnoughMoneyException;
 import com.epam.training.exception.notFound.WagerNotFoundException;
 import com.epam.training.model.bet.Bet;
@@ -78,6 +79,20 @@ public class WagerServiceImpl implements WagerService {
     @Override
     public void deleteWager(Wager wager) {
         wagerDao.delete(wager);
+    }
+
+    @Override
+    public void checkDateAndDeleteWager(int id) {
+        final Wager wager = getById(id);
+        final Date startDate = wager.getOutcomeOdd().getOutcome().getBet().getEvent().getStartDate();
+        final Date curDate = new Date();
+
+        if (curDate.compareTo(startDate) < 0) {
+            wagerDao.delete(wager);
+        } else {
+            throw new ExpiredTimeForActionException(String.format("Try to delete wager with id: %d after event start." +
+                    " Start date: %s , try delete on: %s", id, startDate.toString(), curDate.toString()));
+        }
     }
 
     private Set<String> getOutcomeValues(Bet bet) {
