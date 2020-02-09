@@ -31,13 +31,15 @@
                 <td colspan="4">No bets available</td>
             </tr>
             <tr th:each="wager : ${wagers}">
-                <td>
+                <td><span
+                        th:if="${curDate.before(wager.getOutcomeOdd().getOutcome().getBet().getEvent().getStartDate())}">
                     <form action="#" th:action="@{/user/deleteWager}" method="post">
                         <button th:type="submit"
                                 class="btn btn-danger">delete
                         </button>
                         <input type="hidden" th:value="${wager.getId()}" name="wagerId"/>
                     </form>
+                </span>
                 </td>
                 <td><span
                         th:text="${wager.getOutcomeOdd().getOutcome().getBet().getEvent().getTitle()} + ' start date: s' + ${wager.getOutcomeOdd().getOutcome().getBet().getEvent().getStartDate()}"></span>

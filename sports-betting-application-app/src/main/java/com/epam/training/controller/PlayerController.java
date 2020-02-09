@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -37,7 +38,9 @@ public class PlayerController {
     public String getWagersForUser(Model model) {
         //todo remove mock for player
         final List<Wager> wagers = wagerService.findByPlayerId(1);
+        final Date curDate = new Date();
         model.addAttribute("wagers", wagers);
+        model.addAttribute("curDate", curDate);
         return "wagers-player";
     }
 
