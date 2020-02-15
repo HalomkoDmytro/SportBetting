@@ -2,18 +2,23 @@ package com.epam.training.service.impl;
 
 import com.epam.training.dao.AdminDao;
 import com.epam.training.dao.PlayerDao;
+import com.epam.training.dao.UserDao;
 import com.epam.training.exception.notFound.UserNotFoundException;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Admin;
 import com.epam.training.model.user.Player;
+import com.epam.training.model.user.User;
+import com.epam.training.model.user.UserAbstract;
 import com.epam.training.model.usergroup.FootballAdmin;
 import com.epam.training.model.usergroup.Role;
 import com.epam.training.model.usergroup.TennisAdmin;
 import com.epam.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,10 +27,16 @@ public class UserServiceImpl implements UserService {
 
     private final AdminDao adminDao;
 
+    private final UserDao userDao;
+
+    private final BCryptPasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserServiceImpl(PlayerDao playerDao, AdminDao adminDao) {
+    public UserServiceImpl(PlayerDao playerDao, AdminDao adminDao, UserDao userDao, BCryptPasswordEncoder passwordEncoder) {
         this.playerDao = playerDao;
         this.adminDao = adminDao;
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -46,8 +57,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Player> findAllPlayer() {
-        return (List<Player>)playerDao.findAllByRole(Role.PLAYER);
+        return (List<Player>) playerDao.findAllByRole(Role.PLAYER);
     }
 
     @Override
@@ -59,7 +71,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Player findPlayerById(int id) {
         return playerDao.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(String.format("Can't find User with id: %d", id)));
+                .orElseThrow(() -> new UserNotFoundException(String.format("Can't find Player with id: %d", id)));
     }
 
     @Override
@@ -76,11 +88,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Admin createAdmin(Admin admin) {
+        encodePassword(admin);
         return adminDao.save(admin);
     }
 
     @Override
     public Player createPlayer(Player player) {
+        player.setRole(Role.PLAYER);
+        encodePassword(player);
         return playerDao.save(player);
     }
 
@@ -107,5 +122,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Player> getAllPlayersWithOutcomeOdd(OutcomeOdd outcomeOdd) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
+    @Override
+    public User findUserById(int id) {
+        return userDao.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(String.format("Can't find User with id: %d", id)));
+    }
+
+    private void encodePassword(UserAbstract userAbstract) {
+        userAbstract.setPassword(passwordEncoder.encode(userAbstract.getPassword()));
     }
 }

@@ -3,7 +3,7 @@ package com.epam.training.service.impl;
 
 import com.epam.training.aspect.constraints.LogExecutionTime;
 import com.epam.training.service.ConsoleReaderService;
-import com.epam.training.ui.UiText;
+import com.epam.training.utils.UiText;
 import com.epam.training.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.epam.training.service.impl;
 
 import com.epam.training.dao.WagerDao;
-import com.epam.training.dto.impl.WagerNewDto;
+import com.epam.training.form.impl.WagerNewDto;
 import com.epam.training.exception.ExpiredTimeForActionException;
 import com.epam.training.exception.NotEnoughMoneyException;
 import com.epam.training.exception.notFound.WagerNotFoundException;

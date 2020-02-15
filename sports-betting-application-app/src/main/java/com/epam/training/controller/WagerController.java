@@ -1,13 +1,15 @@
 package com.epam.training.controller;
 
-import com.epam.training.dto.impl.WagerNewDto;
+import com.epam.training.form.impl.WagerNewDto;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.sportevent.SportEvent;
+import com.epam.training.model.user.CurrentProfile;
 import com.epam.training.model.user.Player;
 import com.epam.training.service.BetService;
 import com.epam.training.service.SportEventsService;
 import com.epam.training.service.UserService;
 import com.epam.training.service.WagerService;
+import com.epam.training.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,8 +42,11 @@ public class WagerController {
         final SportEvent sportEvent = sportEventsService.byId(idSportEvent);
         List<Bet> bets = betService.betsForSportEventById(idSportEvent);
 
-        //todo remove user userService
-        final Player player = userService.findPlayerById(1);
+        final CurrentProfile currentProfile = SecurityUtils.getCurrentProfile();
+        if(currentProfile == null) {
+            return "redirect:/signin";
+        }
+        final Player player = userService.findPlayerById(currentProfile.getId());
 
         model.addAttribute("sportEvent", sportEvent);
         model.addAttribute("bets", bets);

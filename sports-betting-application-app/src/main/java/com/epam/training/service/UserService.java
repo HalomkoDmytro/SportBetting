@@ -3,11 +3,13 @@ package com.epam.training.service;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Admin;
 import com.epam.training.model.user.Player;
+import com.epam.training.model.user.User;
 import com.epam.training.model.usergroup.FootballAdmin;
 import com.epam.training.model.usergroup.TennisAdmin;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UserService {
@@ -41,5 +43,9 @@ public interface UserService {
     void deleteUser(Player player);
 
     List<Player> getAllPlayersWithOutcomeOdd(OutcomeOdd outcomeOdd);
+
+    Optional<User> findUserByEmail(String email);
+
+    User findUserById(int id);
 
 }

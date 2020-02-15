@@ -1,5 +1,6 @@
 package com.epam.training.controller;
 
+import com.epam.training.form.impl.SignUpForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -22,7 +23,7 @@ public class HomeController {
     }
 
     @GetMapping("/signup")
-    public String signUp() {
+    public String signUp(SignUpForm signUpForm) {
         return "signup";
     }
 

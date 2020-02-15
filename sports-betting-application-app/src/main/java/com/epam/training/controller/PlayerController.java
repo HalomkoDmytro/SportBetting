@@ -1,9 +1,11 @@
 package com.epam.training.controller;
 
+import com.epam.training.model.user.CurrentProfile;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
 import com.epam.training.service.UserService;
 import com.epam.training.service.WagerService;
+import com.epam.training.utils.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,16 +30,22 @@ public class PlayerController {
 
     @GetMapping("/info")
     public String getUserInfo(Model model) {
-        //todo remove mock for player
-        final Player playerById = userService.findPlayerById(1);
-        model.addAttribute("player", playerById);
+        final CurrentProfile currentProfile = SecurityUtils.getCurrentProfile();
+        if(currentProfile == null) {
+            return "redirect:/signin";
+        }
+        final Player player = userService.findPlayerById(currentProfile.getId());
+        model.addAttribute("player", player);
         return "user";
     }
 
     @GetMapping("/wagers")
     public String getWagersForUser(Model model) {
-        //todo remove mock for player
-        final List<Wager> wagers = wagerService.findByPlayerId(1);
+        final CurrentProfile currentProfile = SecurityUtils.getCurrentProfile();
+        if(currentProfile == null) {
+            return "redirect:/signin";
+        }
+        final List<Wager> wagers = wagerService.findByPlayerId(currentProfile.getId());
         final Date curDate = new Date();
         model.addAttribute("wagers", wagers);
         model.addAttribute("curDate", curDate);

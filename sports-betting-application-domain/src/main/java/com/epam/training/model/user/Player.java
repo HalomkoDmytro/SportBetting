@@ -1,5 +1,6 @@
 package com.epam.training.model.user;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +21,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Player extends User {
+public class Player extends UserAbstract {
 
     @Column
     private String name;
@@ -37,6 +38,11 @@ public class Player extends User {
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
+
+    public Player(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     @Override
     public String toString() {

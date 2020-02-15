@@ -1,6 +1,6 @@
 package com.epam.training.service;
 
-import com.epam.training.dto.impl.WagerNewDto;
+import com.epam.training.form.impl.WagerNewDto;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.wager.Wager;
 import org.springframework.stereotype.Service;

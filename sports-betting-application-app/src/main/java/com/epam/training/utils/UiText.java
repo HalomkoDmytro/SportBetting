@@ -1,4 +1,4 @@
-package com.epam.training.ui;
+package com.epam.training.utils;
 
 public final class UiText {
 

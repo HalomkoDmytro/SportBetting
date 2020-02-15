@@ -13,13 +13,13 @@
     <div class="card border-primary mb-3" style="max-width: 18rem;">
         <div class="card-header text-white bg-primary"><h3>Login</h3></div>
         <div class="card-body text-grey">
-            <form th:action="@{/sign-in-handler}" method="post">
+            <form th:action="@{/sign-in-handler}" method="POST">
                 <input type="email" name="email" class="form-control" id="email" placeholder="Email">
                 <br>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                 <br>
                 <div th:if="${param.error}">
-                    Invalid username or password.
+                    <p style="font-size: 20; color: #FF1C19;">Email or Password invalid</p>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>

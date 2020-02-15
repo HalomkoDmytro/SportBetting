@@ -1,4 +1,4 @@
-package com.epam.training.dto.impl;
+package com.epam.training.form.impl;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
