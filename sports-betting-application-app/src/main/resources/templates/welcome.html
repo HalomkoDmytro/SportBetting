@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>SPORT BETTING</title>
@@ -7,7 +7,7 @@
     <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-
+<div th:insert="~{header :: copy}"></div>
 <div class="d-flex justify-content-center text-white bg-dark">
     <div class="m-5">
         <h1 class="d-flex justify-content-center"><b>Welcome to SportsBet!</b></h1>
@@ -16,7 +16,9 @@
 </div>
 
 <div>
-    <h4><a href="/signin">Login</a> or <a href="/security/registration">Register</a> to start!</h4>
+    <div sec:authorize="!isAuthenticated()">
+        <h4><a href="/signin">Login</a> or <a href="/security/registration">Register</a> to start!</h4>
+    </div>
 </div>
 </body>
 </html>

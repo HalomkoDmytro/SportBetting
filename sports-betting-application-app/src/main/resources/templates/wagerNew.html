@@ -10,7 +10,7 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-
+<div th:insert="~{header :: copy}"></div>
 <div class="card border-primary m-3">
     <!--/*@thymesVar id="wagerNewDto" type="com.epam.training.form.impl.WagerNewDto"*/-->
     <form action="#" th:action="@{/wagerNew}" th:object="${wagerNewDto}" method="post">
