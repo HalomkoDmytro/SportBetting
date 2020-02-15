@@ -6,6 +6,7 @@ import com.epam.training.dao.UserDao;
 import com.epam.training.exception.notFound.UserNotFoundException;
 import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Admin;
+import com.epam.training.model.user.Currency;
 import com.epam.training.model.user.Player;
 import com.epam.training.model.user.User;
 import com.epam.training.model.user.UserAbstract;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -96,7 +99,13 @@ public class UserServiceImpl implements UserService {
     public Player createPlayer(Player player) {
         player.setRole(Role.PLAYER);
         encodePassword(player);
+        setMockData(player);
         return playerDao.save(player);
+    }
+
+    private void setMockData(Player player) {
+        player.setBalance(new BigDecimal(1000));
+        player.setCurrency(Currency.EUR);
     }
 
     @Override
@@ -138,4 +147,5 @@ public class UserServiceImpl implements UserService {
     private void encodePassword(UserAbstract userAbstract) {
         userAbstract.setPassword(passwordEncoder.encode(userAbstract.getPassword()));
     }
+
 }

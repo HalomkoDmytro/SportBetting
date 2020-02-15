@@ -12,13 +12,15 @@
         <div class="card-body text-grey">
             <!--/*@thymesVar id="signUpForm" type="com.epam.training.form.impl.SignUpForm"*/-->
             <form action="#" th:action="@{/security/registration}" th:object="${signUpForm}" method="POST">
-                <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                <input type="email" class="form-control" id="email" placeholder="Email" th:field="*{email}" name="email">
                 <br>
-                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                <p style="font-size: 20; color: #FF1C19;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}" name="password">
                 <br>
-                <input type="password" class="form-control" id="password_confirmation" name="passwordConfirm"
+                <input type="password" class="form-control" id="password_confirmation" th:field="*{passwordConfirm}" name="passwordConfirm"
                        placeholder="Password Confirmation">
                 <br>
+                <p style="font-size: 20; color: #FF1C19;" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></p>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

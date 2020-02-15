@@ -11,9 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/security")
@@ -27,17 +28,18 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/registration")
-    public String signUp() {
+    public String signUp(SignUpForm signUpForm) {
         return "signup";
     }
 
     @PostMapping("/registration")
-    public String singUpNewPlayer(@ModelAttribute("signUpFrom") SignUpForm signUpForm,
+    public String singUpNewPlayer(@Valid SignUpForm signUpForm,
                                   BindingResult bindingResult, Model model) {
         userValidator.validate(signUpForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "signup";
         }
         final Player player = new Player(signUpForm.getEmail(), signUpForm.getPassword());
         userService.createPlayer(player);

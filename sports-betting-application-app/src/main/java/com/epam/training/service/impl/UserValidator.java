@@ -5,6 +5,7 @@ import com.epam.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
@@ -23,16 +24,11 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         SignUpForm userData = (SignUpForm) o;
 
-        if (!userData.getEmail().contains("@")) {
-            errors.reject("email");
+
+        final boolean emailOccupied = userService.findUserByEmail(userData.getEmail()).isPresent();
+        if (emailOccupied) {
+            errors.rejectValue("email","error.signUpForm", "An account already exists for this email.");
+            return;
         }
-
-        if (userService.findUserByEmail(userData.getEmail()).isPresent()) {
-            errors.reject("email", "Duplicate.userForm.email");
-        }
-
-        ValidationUtils.rejectIfEmpty(errors, "password", "NotEmpty");
-
-
     }
 }
