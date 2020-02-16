@@ -20,8 +20,8 @@ var sportBetting = {
     },
 
     getContent: function (url) {
-        var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
+        // var token = $("meta[name='_csrf']").attr("content");
+        // var header = $("meta[name='_csrf_header']").attr("content");
         $.ajax({
             url: url,
             type: "GET",
@@ -29,9 +29,9 @@ var sportBetting = {
             dataType: "json",
             cache: false,
             timeout: 600000,
-            beforeSend: function(request) {
-                request.setRequestHeader(header, token);
-            },
+            // beforeSend: function(request) {
+            //     request.setRequestHeader(header, token);
+            // },
             success: function (json) {
                 sportBetting.populateDropDown(json);
             },

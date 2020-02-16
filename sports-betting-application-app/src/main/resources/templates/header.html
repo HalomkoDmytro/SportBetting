@@ -26,9 +26,9 @@
       </div><div sec:authorize="isAuthenticated()">
         <form id="log-out" action="/sign-out" method="POST">
             <b><a href="#" onclick="sportBetting.submitForm('log-out')" >Logout</a></b>
-            <input type="hidden"
-                    th:name="${_csrf.parameterName}"
-                    th:value="${_csrf.token}" />
+<!--            <input type="hidden"-->
+<!--                    th:name="${_csrf.parameterName}"-->
+<!--                    th:value="${_csrf.token}" />-->
         </form>
       </div>
     </span>

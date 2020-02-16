@@ -33,7 +33,6 @@ public class LoginController {
     @Autowired
     private SecurityService securityService;
 
-
     @GetMapping("/registration")
     public String signUp(SignUpForm signUpForm) {
         return "signup";

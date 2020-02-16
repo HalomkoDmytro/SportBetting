@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
@@ -27,9 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/user/*", "/wagerNew/*").hasAnyAuthority("PLAYER", "ADMINS")
-                .antMatchers("/rest/**").hasAuthority("ADMINS")
+//                .antMatchers("/rest/**").hasAuthority("ADMINS")
                 .anyRequest().permitAll()
-                .and().cors().disable();
+                .and().cors().disable()
+                .csrf().disable();
 
         http.formLogin()
                 .loginPage("/signin")

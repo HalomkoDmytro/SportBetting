@@ -3,6 +3,7 @@ package com.epam.training.model.bet;
 import com.epam.training.model.outcome.Outcome;
 import com.epam.training.model.sportevent.AbstractSportEvent;
 import com.epam.training.model.sportevent.SportEvent;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -39,6 +40,7 @@ public class Bet {
 
     @ManyToOne(targetEntity = SportEvent.class)
     @JoinColumn(name = "sport_event_id")
+    @JsonBackReference
     private AbstractSportEvent event;
 
     @Column
@@ -54,5 +56,6 @@ public class Bet {
     public Bet() {
         this.outcomes = new ArrayList<>();
     }
+
 
 }

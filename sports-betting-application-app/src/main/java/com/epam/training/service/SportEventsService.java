@@ -25,4 +25,6 @@ public interface SportEventsService {
 
     void delete(SportEvent sportEvent);
 
+    void deleteById(int id);
+
 }

@@ -2,7 +2,6 @@ package com.epam.training.model.outcome;
 
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.sportevent.Result;
-import com.epam.training.model.sportevent.SportEvent;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

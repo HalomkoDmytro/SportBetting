@@ -59,4 +59,9 @@ public class SportEventServiceImpl implements SportEventsService {
     public void delete(SportEvent sportEvent) {
         sportEventDao.delete(sportEvent);
     }
+
+    @Override
+    public void deleteById(int id) {
+        sportEventDao.deleteById(id);
+    }
 }
