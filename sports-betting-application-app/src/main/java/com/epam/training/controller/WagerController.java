@@ -57,6 +57,6 @@ public class WagerController {
     @PostMapping("/wagerNew")
     public String createWager(@ModelAttribute WagerNewDto wagerNewDto) {
         wagerService.createWager(wagerNewDto);
-        return "home";
+        return "redirect:/user/wagers";
     }
 }

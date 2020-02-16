@@ -2,6 +2,7 @@ package com.epam.training.controller;
 
 import com.epam.training.form.impl.SignUpForm;
 import com.epam.training.model.user.Player;
+import com.epam.training.service.SecurityService;
 import com.epam.training.service.UserService;
 import com.epam.training.service.impl.UserValidator;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -28,6 +30,9 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SecurityService securityService;
+
 
     @GetMapping("/registration")
     public String signUp(SignUpForm signUpForm) {
@@ -36,15 +41,17 @@ public class LoginController {
 
     @PostMapping("/registration")
     public String singUpNewPlayer(@Valid SignUpForm signUpForm,
-                                  BindingResult bindingResult, Model model) {
+                                  BindingResult bindingResult, Model model, HttpServletRequest request) {
         userValidator.validate(signUpForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "signup";
         }
-        final Player player = new Player(signUpForm.getEmail(), signUpForm.getPassword());
+        final String email = signUpForm.getEmail();
+        final Player player = new Player(email, signUpForm.getPassword());
         userService.createPlayer(player);
 
-        return "redirect:/signin";
+        securityService.authenticateUserAndSetSession(email, signUpForm.getPassword(), request);
+        return "redirect:/sportEvent/history";
     }
 
 }
