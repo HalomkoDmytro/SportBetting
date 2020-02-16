@@ -1,4 +1,9 @@
 var sportBetting = {
+
+    submitForm: function(id) {
+        document.getElementById(id).submit();
+    },
+
     goToHrefOnClickRow: function (thisObj) {
         window.document.location = thisObj.children('td:first').data("href");
     },
