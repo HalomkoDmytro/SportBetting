@@ -110,6 +110,8 @@ public class WagerServiceImpl implements WagerService {
         final Player playerById = userService.findPlayerById(wagerNewDto.getIdPlayer());
         final OutcomeOdd outcomeOdd = outcomeOddService.findWithOutcome(wagerNewDto.getIdOutcome());
 
+        reducePlayerBalance(playerById, wagerNewDto.getBetSize());
+
         final float betSize = wagerNewDto.getBetSize();
         wager.setAmount(new BigDecimal(betSize));
         wager.setCurrency(playerById.getCurrency());

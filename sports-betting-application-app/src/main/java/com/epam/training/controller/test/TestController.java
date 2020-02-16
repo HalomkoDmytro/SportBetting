@@ -21,6 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/test")
+@Deprecated
 public class TestController {
 //
 //    @Autowired
