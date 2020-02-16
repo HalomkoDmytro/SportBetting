@@ -9,6 +9,8 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
+<div th:insert="~{header :: copy}"></div>
+
 <div class="d-flex justify-content-center m-5">
     <div class="card border-primary mb-3" style="max-width: 18rem;">
         <div class="card-header text-white bg-primary"><h3>Login</h3></div>

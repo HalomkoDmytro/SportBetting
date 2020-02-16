@@ -104,8 +104,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private void setMockData(Player player) {
-        player.setBalance(new BigDecimal(1000));
+        player.setBalance(new BigDecimal(1000.00));
         player.setCurrency(Currency.EUR);
+        player.setEnabled(true);
     }
 
     @Override
