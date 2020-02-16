@@ -35,9 +35,9 @@
 
     <div class="input-group mb-3 border-primary">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="dateBirth">Date of birth:</span>
+            <span class="input-group-text" id="dateOfBirth">Date of birth:</span>
         </div>
-        <input type="text" class="form-control" placeholder="dateBirth" th:value="${player.getDateOfBirth()}"
+        <input type="text" class="form-control" placeholder="dateOfBirth" th:value="${#dates.format(player.getDateOfBirth(), 'dd-MM-yyyy')}"
                aria-label="title" aria-describedby="dateBirth" readonly>
     </div>
 
