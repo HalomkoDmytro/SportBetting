@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/outcome")
+@RequestMapping("/rest")
 public class OutcomeRestController {
 
     private final OutcomeService outcomeService;
@@ -21,7 +21,7 @@ public class OutcomeRestController {
         this.outcomeService = outcomeService;
     }
 
-    @GetMapping("/{betId}")
+    @GetMapping("/outcome/{betId}")
     public List<Outcome> getOutcome(@PathVariable Integer betId) {
         List<Outcome> outcomeList = outcomeService.findAllWithBetId(betId);
         return outcomeList;
