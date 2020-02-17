@@ -26,8 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/*", "/wagerNew/*").hasAnyAuthority("PLAYER", "ADMINS")
-                .antMatchers("/rest/**").hasAuthority("ADMINS")
+                .antMatchers("/user/*", "/wagerNew/*").hasAnyAuthority("PLAYER", "ADMINS", "FOOTBALL_ADMIN", "TENNIS_ADMIN")
+                .antMatchers("/rest/**").hasAnyAuthority("ADMINS", "FOOTBALL_ADMIN", "TENNIS_ADMIN")
                 .anyRequest().permitAll()
                 .and().cors().disable()
                 .csrf().disable();
