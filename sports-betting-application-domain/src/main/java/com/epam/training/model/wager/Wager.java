@@ -4,6 +4,8 @@ import com.epam.training.model.outcome.OutcomeOdd;
 import com.epam.training.model.user.Currency;
 import com.epam.training.model.user.Player;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +26,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Wager {
 
