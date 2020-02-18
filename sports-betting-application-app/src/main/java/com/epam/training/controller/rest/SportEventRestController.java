@@ -34,7 +34,7 @@ public class SportEventRestController {
     }
 
     @PostMapping(value = "/sportEvents", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public SportEvent sportEventOne( SportEvent sportEvent) {
+    public SportEvent sportEventOneSave( SportEvent sportEvent) {
         return sportEventService.createSportEvent(sportEvent);
     }
 

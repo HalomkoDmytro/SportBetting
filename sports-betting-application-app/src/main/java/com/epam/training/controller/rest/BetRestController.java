@@ -24,7 +24,7 @@ public class BetRestController {
         return betService.getAll();
     }
 
-    @GetMapping("/sportEvents/{id}")
+    @GetMapping("/bets/{id}")
     public Bet betById(@PathVariable int id) {
         return betService.findById(id);
     }
