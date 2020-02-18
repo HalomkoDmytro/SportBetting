@@ -2,17 +2,12 @@ package com.epam.training.service.impl;
 
 
 import com.epam.training.dao.AdminDao;
-import com.epam.training.dao.PlayerDao;
-import com.epam.training.dao.UserDao;
 import com.epam.training.model.user.Admin;
 import com.epam.training.model.usergroup.Role;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
