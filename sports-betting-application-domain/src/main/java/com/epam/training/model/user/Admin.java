@@ -7,5 +7,4 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class Admin extends UserAbstract {
 
-//    private List<UserGroup> userGroup;
 }

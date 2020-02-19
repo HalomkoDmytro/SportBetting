@@ -1,5 +1,7 @@
 package com.epam.training.model.outcome;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,8 +21,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "outcome_odd")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class OutcomeOdd {
 

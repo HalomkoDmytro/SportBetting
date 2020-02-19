@@ -1,6 +1,7 @@
 package com.epam.training.model.user;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,8 +19,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "user")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Player extends UserAbstract {
 

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+/**
+ * Log parameters was passed to method.
+ */
 @Aspect
 @Component
 public class ParametersLoggerAspect {

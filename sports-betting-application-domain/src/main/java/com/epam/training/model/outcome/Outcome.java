@@ -3,6 +3,7 @@ package com.epam.training.model.outcome;
 import com.epam.training.model.bet.Bet;
 import com.epam.training.model.sportevent.Result;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,7 @@ import java.util.List;
  * Possible outcome of a bet
  */
 @Entity
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 public class Outcome {

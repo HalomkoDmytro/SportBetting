@@ -1,6 +1,7 @@
 package com.epam.training.model.sportevent;
 
 import com.epam.training.model.outcome.Outcome;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 public class Result {
 
     @Id

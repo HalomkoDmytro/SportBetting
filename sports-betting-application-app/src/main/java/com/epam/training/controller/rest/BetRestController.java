@@ -29,7 +29,7 @@ public class BetRestController {
         return betService.findById(id);
     }
 
-    @PostMapping(value = "/sportEvents", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "/bets", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public Bet createBet(Bet bet) {
         return betService.create(bet);
     }

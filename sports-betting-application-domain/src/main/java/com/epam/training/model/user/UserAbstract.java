@@ -2,6 +2,7 @@ package com.epam.training.model.user;
 
 
 import com.epam.training.model.usergroup.Role;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(of = "id")
 public abstract class UserAbstract {
 

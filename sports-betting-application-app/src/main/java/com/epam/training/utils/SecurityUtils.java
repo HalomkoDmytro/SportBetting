@@ -5,6 +5,9 @@ import com.epam.training.model.user.UserAbstract;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+/**
+ * Get information about the current user from the session.
+ */
 public class SecurityUtils {
 
     public static CurrentProfile getCurrentProfile() {

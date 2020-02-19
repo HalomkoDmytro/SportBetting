@@ -3,6 +3,7 @@ package com.epam.training.model.sportevent;
 
 import com.epam.training.model.bet.Bet;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @MappedSuperclass
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(of = "id")
 public abstract class AbstractSportEvent {
 

@@ -16,7 +16,7 @@ var sportBetting = {
         let selectedOption = $('#selectedOption').children("option:selected");
         // let text = selectedOption.val();
         let betIdSelectedOption = selectedOption.data("idoption")
-        sportBetting.getContent("/outcome/" + betIdSelectedOption);
+        sportBetting.getContent("/rest/outcome/" + betIdSelectedOption);
     },
 
     getContent: function (url) {

@@ -32,13 +32,15 @@ public class UserRestController {
     @GetMapping("/getAdmins/{group}")
     public List<? extends Admin> getAdmins(@PathVariable String group) {
         switch (group) {
-            case "a":
+            case "all":
+                return userService.findAllAdmin();
+            case "football":
                 return userService.findAllFootballAdmin();
-            case "t":
+            case "tenis":
                 return userService.findAllTennisAdmin();
             default:
-                return userService.findAllAdmin();
+                throw new IllegalArgumentException();
         }
-//        return userService.findAllFootballAdmin();
+
     }
 }
