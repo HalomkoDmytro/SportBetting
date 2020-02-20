@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>SPORT BETTING</title>
+    <base href="/">
     <link th:href="@{/bootstrap-4.4.1-dist/css/bootstrap.css}" rel="stylesheet">
+    <script th:src="@{/js/jquery-3.4.1.js}" type="text/javascript"></script>
+    <script th:src="@{/js/sport-betting.js}" type="text/javascript"></script>
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
 </head>
 <body>
+<div th:insert="~{header :: copy}"></div>
+
 <div class="d-flex justify-content-center m-5">
     <div class="card border-primary mb-3" style="max-width: 18rem;">
         <div class="card-header text-white bg-primary"><h3>Login</h3></div>
         <div class="card-body text-grey">
-            <form>
-                <input type="email" class="form-control" id="email" placeholder="Email">
+            <form th:action="@{/sign-in-handler}" method="POST">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email">
                 <br>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                 <br>
+                <div th:if="${param.error}">
+                    <p style="font-size: 20; color: #FF1C19;">Email or Password invalid</p>
+                </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>

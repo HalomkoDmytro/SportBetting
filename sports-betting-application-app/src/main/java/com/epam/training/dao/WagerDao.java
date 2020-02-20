@@ -1,17 +1,12 @@
 package com.epam.training.dao;
 
-import com.epam.training.model.outcome.OutcomeOdd;
-import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-public interface WagerDao {
+public interface WagerDao extends JpaRepository<Wager, Integer> {
 
-    void createWagerForPlayer(OutcomeOdd outcomeOdd, Player player, BigDecimal betAmount);
+    List<Wager> findByPlayerId(int playerId);
 
-    List<Player> getAllPlayersWithOutcomeOdd(OutcomeOdd outcomeOdd);
-
-    List<Wager> getAllWagerWithOutcomeOdd(OutcomeOdd outcomeOdd);
 }

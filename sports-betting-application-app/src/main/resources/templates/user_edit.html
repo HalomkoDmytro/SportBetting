@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SPORT BETTING</title>
+    <link th:href="@{/bootstrap-4.4.1-dist/css/bootstrap.css}" rel="stylesheet">
+    <script th:src="@{/js/jquery-3.4.1.js}" type="text/javascript"></script>
+    <script th:src="@{/js/sport-betting.js}" type="text/javascript"></script>
+</head>
+<body>
+<div th:insert="~{header :: copy}"></div>
+<div>
+    <!--/*@thymesVar id="playerPersonalInfoUpdateForm" type="com.epam.training.form.impl.PlayerPersonalInfoUpdateForm"*/-->
+    <form action="#" th:action="@{/user/user_edit}" th:object="${playerPersonalInfoUpdateForm}" method="POST">
+        <h2>Player:</h2>
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="acNumber">Account number:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Account number" th:value="${player.getId()}"
+                   aria-label="title" aria-describedby="acNumber" readonly>
+        </div>
+
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="name">Name:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Name" th:value="${player.getName()}" name="name"
+                   aria-label="title" aria-describedby="name">
+        </div>
+
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="email">Email:</span>
+            </div>
+            <input type="text" class="form-control" placeholder="email" th:value="${player.getEmail()}"
+                   aria-label="title" aria-describedby="email" readonly>
+        </div>
+
+        <div class="input-group mb-3 border-primary">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="dateBirth">Date of birth:</span>
+            </div>
+            <input type="date" class="form-control" placeholder="dateBirth"
+                   name="dateOfBirth" aria-label="title" aria-describedby="dateBirth">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Money</span>
+                <span class="input-group-text" th:text="${player.currency}"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Name" th:value="${player.getBalance()}"
+                   aria-label="title" aria-describedby="name" readonly>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

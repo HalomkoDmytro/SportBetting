@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="copy">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Sport betting</a>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/sportEvent/history">Events <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/user/info">Personal_info <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/user/wagers">My_wagers <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Language</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+      <div sec:authorize="!isAuthenticated()">
+        <b><a href="/signin">Login</a> or <a href="/security/registration">Register</a> to start!</b>
+      </div><div sec:authorize="isAuthenticated()">
+        <form id="log-out" action="/sign-out" method="POST">
+            <b><a href="#" onclick="sportBetting.submitForm('log-out')" >Logout</a></b>
+<!--            <input type="hidden"-->
+<!--                    th:name="${_csrf.parameterName}"-->
+<!--                    th:value="${_csrf.token}" />-->
+        </form>
+      </div>
+    </span>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

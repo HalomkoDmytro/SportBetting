@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * Log return value of method.
+ */
 @Aspect
 @Component
 public class LoggerReturnValueAspect {

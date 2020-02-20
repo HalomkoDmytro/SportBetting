@@ -1,19 +1,42 @@
 package com.epam.training.model.sportevent;
 
-import com.epam.training.model.outcome.OutcomeOdd;
+import com.epam.training.model.outcome.Outcome;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 public class Result {
 
-    private List<OutcomeOdd> outcomesWinner = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-    public void addOutcomeOdd(final OutcomeOdd outcomeOdd) {
-        outcomesWinner.add(outcomeOdd);
+    @OneToMany(mappedBy = "result")
+    private List<Outcome> outcomesWinner;
+
+    @OneToOne()
+    @JoinColumn(name = "sport_even_id")
+    private SportEvent sportEvent;
+
+    public Result() {
+        this.outcomesWinner = new ArrayList<>();
+    }
+
+    public void addOutcome(final Outcome outcome) {
+        outcomesWinner.add(outcome);
     }
 }

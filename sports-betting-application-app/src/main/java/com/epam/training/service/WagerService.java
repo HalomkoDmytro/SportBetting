@@ -1,19 +1,30 @@
 package com.epam.training.service;
 
+import com.epam.training.form.impl.WagerNewDto;
 import com.epam.training.model.outcome.OutcomeOdd;
-import com.epam.training.model.user.Player;
 import com.epam.training.model.wager.Wager;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 public interface WagerService {
 
-    void createWagerForPlayer(OutcomeOdd outcomeOdd, Player player, BigDecimal betAmount);
+    Wager save(Wager wager);
 
-    List<Player> getAllPlayersWithOutcomeOdd(OutcomeOdd outcomeOdd);
+    List<Wager> getAllWithOutcomeOdd(OutcomeOdd outcomeOdd);
 
-    List<Wager> getAllWagerWithOutcomeOdd(OutcomeOdd outcomeOdd);
+    List<Wager> getAll();
+
+    Wager getById(int id);
+
+    Wager update(Wager wager);
+
+    void deleteWager(Wager wager);
+
+    void checkDateAndDeleteWager(int id);
+
+    Wager createWager(WagerNewDto wagerNewDto);
+
+    List<Wager> findByPlayerId(int playerId);
 }
