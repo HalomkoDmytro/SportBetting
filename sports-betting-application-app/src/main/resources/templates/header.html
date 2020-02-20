@@ -3,7 +3,7 @@
 <body>
 <div th:fragment="copy">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Sport betting</a>
+        <a class="navbar-brand" href="/"><span th:text="#{header.title}"></span></a>
 
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
@@ -17,12 +17,12 @@
                     <a class="nav-link" href="/user/wagers">My_wagers <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Language</a>
+                    <a class="nav-link" href="#" onclick="sportBetting.getCall('/changeLocale')"><span th:text="#{language.change}"></span> </a>
                 </li>
             </ul>
             <span class="navbar-text">
       <div sec:authorize="!isAuthenticated()">
-        <b><a href="/signin">Login</a> or <a href="/security/registration">Register</a> to start!</b>
+        <b><a href="/signin"><span th:text="#{btn.login}"></span></a> or <a href="/security/registration"><span th:text="#{btn.register}"></span></a> to start!</b>
       </div><div sec:authorize="isAuthenticated()">
         <form id="log-out" action="/sign-out" method="POST">
             <b><a href="#" onclick="sportBetting.submitForm('log-out')" >Logout</a></b>

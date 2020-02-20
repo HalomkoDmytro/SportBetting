@@ -41,6 +41,21 @@ var sportBetting = {
         })
     },
 
+    getCall: function (url) {
+        $.ajax({
+            url: url,
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            cache: false,
+            timeout: 600000,
+            error: function (data) {
+                window.alert("something go wrong, try again latter...")
+            }
+        });
+        location.reload();
+    },
+
     populateDropDown: function (json) {
         let outcomeOptionBox = $('#selectOutcomeOption');
         let outcomeOptionBlock = $('#outcomeOptionBlock');
