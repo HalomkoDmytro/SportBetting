@@ -13,9 +13,9 @@
 <div class="d-flex justify-content-center m-5">
 
     <div class="card text-white bg-danger mb-3" style="max-width: 18rem;" onclick="location.href='/'">
-        <div class="card-header">Ooops!</div>
+        <div class="card-header"><span th:text="#{error.oops}"></span></div>
         <div class="card-body">
-            <h5 class="card-title">Something go wrong</h5>
+            <h5 class="card-title"><span th:text="#{error.wrong}"></span></h5>
             <p class="card-text">Try again later.</p>
         </div>
     </div>
