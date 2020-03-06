@@ -14,7 +14,7 @@
     <div class="card border-primary mb-3" style="max-width: 18rem;">
         <div class="card-header text-white bg-primary"><h3>Registration</h3></div>
         <div class="card-body text-grey">
-            <!--/*@thymesVar id="signUpForm" type="com.epam.training.form.impl.SignUpForm"*/-->
+            <!--/*@thymesVar id="signUpForm" type="com.my.training.form.impl.SignUpForm"*/-->
             <form action="#" th:action="@{/security/registration}" th:object="${signUpForm}" method="POST">
                 <input type="email" class="form-control" id="email" placeholder="Email" th:field="*{email}" name="email">
                 <br>

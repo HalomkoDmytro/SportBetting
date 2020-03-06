@@ -10,7 +10,7 @@
 <body>
 <div th:insert="~{header :: copy}"></div>
 <div>
-    <!--/*@thymesVar id="playerPersonalInfoUpdateForm" type="com.epam.training.form.impl.PlayerPersonalInfoUpdateForm"*/-->
+    <!--/*@thymesVar id="playerPersonalInfoUpdateForm" type="com.my.training.form.impl.PlayerPersonalInfoUpdateForm"*/-->
     <form action="#" th:action="@{/user/user_edit}" th:object="${playerPersonalInfoUpdateForm}" method="POST">
         <h2>Player:</h2>
         <div class="input-group mb-3 border-primary">

@@ -12,7 +12,7 @@
 <body>
 <div th:insert="~{header :: copy}"></div>
 <div class="card border-primary m-3">
-    <!--/*@thymesVar id="wagerNewDto" type="com.epam.training.form.impl.WagerNewDto"*/-->
+    <!--/*@thymesVar id="wagerNewDto" type="com.my.training.form.impl.WagerNewDto"*/-->
     <form action="#" th:action="@{/wagerNew}" th:object="${wagerNewDto}" method="post">
         <div>
             <h2>Event:</h2>
